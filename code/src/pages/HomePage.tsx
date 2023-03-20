@@ -1,8 +1,11 @@
 import React from 'react'
+import FooterTitle from '../components/Footer/Titles'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <FooterTitle titleImg={"/titleimghome.PNG"} title={"Home"} />
+    </div>
   )
 }
 
