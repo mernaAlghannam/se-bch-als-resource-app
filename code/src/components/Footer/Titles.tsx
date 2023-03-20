@@ -19,6 +19,9 @@
 //   )
 // }
 
+//links: https://ui.mantine.dev/category/hero
+//
+
 // export default Titles
 
 import { Title, createStyles, rem } from '@mantine/core';
@@ -49,7 +52,7 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: 'linear-gradient(0deg, rgba(0, 48, 135, 0.5), rgba(0, 48, 135, 0.5)), url('+img+')',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    // backgroundHeight: rem(242),
+    height: rem(242),
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),
