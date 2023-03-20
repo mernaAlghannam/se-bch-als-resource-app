@@ -15,6 +15,7 @@ const useStyles = createStyles((theme) => ({
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
+    boxShadow:'0px 2px 30px rgba(180, 180, 180, 0.25)'
   },
 
   logo: {
