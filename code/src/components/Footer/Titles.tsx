@@ -21,15 +21,14 @@
 
 // export default Titles
 
-import { Title, createStyles, rem, Box } from '@mantine/core';
-// import React from 'react'
+import { Title, createStyles, rem } from '@mantine/core';
+import React from 'react'
 
 let img = ""
 const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
   img = titleImg
   const { classes} = useStyles();
   return (
-    <Box maw='auto' mx={242}>
     <div className={classes.wrapper}>
       <div className={classes.inner}>
         <Title className={classes.title}>
@@ -37,7 +36,6 @@ const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
         </Title>
       </div>
     </div>
-    </Box>
   );
 }
 
@@ -51,6 +49,7 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: 'linear-gradient(0deg, rgba(0, 48, 135, 0.5), rgba(0, 48, 135, 0.5)), url('+img+')',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    // backgroundHeight: rem(242),
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),
