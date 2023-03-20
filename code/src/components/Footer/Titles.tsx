@@ -29,7 +29,7 @@ const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
   img = titleImg
   const { classes} = useStyles();
   return (
-    <Box maw='auto' mx={390}>
+    <Box maw='auto' mx={242}>
     <div className={classes.wrapper}>
       <div className={classes.inner}>
         <Title className={classes.title}>
@@ -51,12 +51,6 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: 'linear-gradient(0deg, rgba(0, 48, 135, 0.5), rgba(0, 48, 135, 0.5)), url('+img+')',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    // backgroundHeight: rem(390),
-    // position: 'absolute',
-    // width: rem(390),
-    // height: rem(242),
-    // left: rem(0),
-    // top: rem(101),
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),
