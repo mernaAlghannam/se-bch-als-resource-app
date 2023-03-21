@@ -1,6 +1,8 @@
 import React from 'react'
 import { FooterLinks } from "../../components/Footer/Footer"
 
+
+
 const FinalPage = () => {
   return (
     <div>FinalPage

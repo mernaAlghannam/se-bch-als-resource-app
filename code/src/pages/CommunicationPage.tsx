@@ -1,6 +1,7 @@
 import React from 'react'
 import { FooterLinks } from "../../components/Footer/Footer"
 
+
 const CommunicationPage = () => {
   return (
     <div>CommunicationPage
