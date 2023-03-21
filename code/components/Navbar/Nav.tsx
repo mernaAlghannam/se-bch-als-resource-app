@@ -1,28 +1,29 @@
 import React from 'react'
+import { createStyles, Header, Container, Group, Burger, Image, rem} from '@mantine/core';
+
+const HEADER_HEIGHT = rem(64);
+
+const useStyles = createStyles(() => ({
+  inner: {
+    height: HEADER_HEIGHT,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }  
+}))
+
 
 const Nav = () => {
+  const { classes } = useStyles();
     return (
-      <div className="flex min-h-screen flex-col">
-            <div className="mb-2 md:border-b py-2">
-                <div className="container mx-auto">
-                    <div className="flex justify-between gap-2">
-                      <img
-                        className="w-32 ml-4"
-                        src="../Boston_Children's_Hospital_logo..png"
-                        alt="Logo"
-                      />
-                      <div className="flex items-center gap-1 rounded-sm px-2 py-1 mt-2">
-                          <div className="space-y-2">
-                            <div className="w-8 h-1 bg-[#254885]"></div>
-                            <div className="w-8 h-1 bg-[#254885]"></div>
-                            <div className="w-8 h-1 bg-[#254885]"></div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white"></div>
-        </div>
+      <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={120}>
+      <Container className={classes.inner} fluid>
+        <Group>
+          <Image maw={100} mah={120} ml={32} mx="auto" radius="md" src="../Boston_Children's_Hospital_logo..png" alt="Random image" />
+        </Group>
+        <Burger size="lg" color="#254885" />
+      </Container>
+    </Header>
   )
   
 }
