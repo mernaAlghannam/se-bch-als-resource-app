@@ -17,7 +17,7 @@ const useStyles = createStyles(() => ({
 const Nav = () => {
   const { classes } = useStyles();
     return (
-      <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={120}>
+      <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
         <Container className={classes.inner} fluid>
           <Group>
             <Image maw={100} mah={120} ml={32} mx="auto" radius="md" src="../Boston_Children's_Hospital_logo..png" alt="Random image" />
