@@ -1,4 +1,5 @@
 import React from 'react'
+import FooterTitle from '../../components/Footer/Titles'
 
 const CommunicationPage = () => {
   return (
