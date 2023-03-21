@@ -1,5 +1,5 @@
 import React from 'react'
-import FooterTitle from '../components/Footer/Titles'
+import FooterTitle from '../../components/Footer/Titles'
 
 const HomePage = () => {
   return (
