@@ -17,12 +17,12 @@ const useStyles = createStyles(() => ({
 const Nav = () => {
   const { classes } = useStyles();
     return (
-      <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
+      <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0, borderTop: 4 }} withBorder>
         <Container className={classes.inner} fluid>
           <Group>
             <Image maw={100} mah={120} ml={32} mx="auto" radius="md" src="../Boston_Children's_Hospital_logo..png" alt="Random image" />
           </Group>
-          <Burger size="lg" color="#254885" />
+          <Burger size="lg" color="#254885" opened={false} />
         </Container>
       </Header>
   )

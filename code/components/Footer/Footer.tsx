@@ -8,8 +8,8 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     left:0,
     bottom:0, 
-    marginTop: rem(120),
-    paddingTop: `calc(${theme.spacing.xl} * 2)`,
+    // marginTop: rem(120),
+    paddingTop: `10px`,
     paddingBottom: `calc(${theme.spacing.xl} * 2)`,
     backgroundColor: '#254885',
     borderTop: `${rem(1)} solid ${
@@ -84,6 +84,8 @@ export function FooterLinks({ data }: FooterLinksProps) {
         className={classes.link}
         component="a"
         href={link.link}
+        fz = "sm"
+        
         // onClick={(event) => event.preventDefault()}
       >
         {link.label}

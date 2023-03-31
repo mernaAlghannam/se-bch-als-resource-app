@@ -1,145 +1,36 @@
-import { useState } from 'react';
-import { useInterval } from '@mantine/hooks';
-import { createStyles, Button, Progress } from '@mantine/core';
+import React from 'react';
+import { Stack, Button } from '@mantine/core';
+import { createStyles, Header, Container, Group, Burger, Image, rem, Text} from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
-  button: {
-    position: 'relative',
-    transition: 'background-color 150ms ease'
+
+const useStyles = createStyles(() => ({
+  inner: {
+    height: "60px",
+    display: 'flex',
+    width: "80%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: rem(10),
+    alignContent: 'center'
+    
   },
 
-  progress: {
-    ...theme.fn.cover(-1),
-    height: 'auto',
-    backgroundColor: 'transparent',
-    zIndex: 0,
-  },
-
-  label:{
-    position: 'relative',
-    zIndex: 1,
+  outer:{
+    paddingTop: rem(50),
+    paddingLeft: '10%',
   }
-}));
+}))
 
-export default function BodyButton(){
-  const {classes, theme} = useStyles();
-  const [progress, setProgress] = useState(0);
-  const [loaded, setLoaded] = useState(false)
+const BodyButton = () => {
+  const { classes } = useStyles();
+  return (
+    <Stack h={300} className={classes.outer} sx = {(theme) => ({backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8]: theme.colors.gray[0]})}>
+      <Button className={classes.inner} variant='outline'><Text fz="xl">Communication</Text></Button>
+      <Button className={classes.inner} variant='outline'><Text fz="xl">Computer Access</Text></Button>
+      <Button className={classes.inner} variant='outline'><Text fz="xl">Home Access</Text></Button>
+      <Button className={classes.inner} variant='outline'><Text fz="xl">Smart Phone Access</Text></Button>
+    </Stack>
+  )
 }
 
-// export default Body
-
-// import { createStyles, Text, Container, rem } from '@mantine/core';
-// import Image from 'next/image'
-// import image12 from '../../src/styles/image12.png'
-
-// const useStyles = createStyles((theme) => ({
-//   footer: {
-//     position: 'absolute',
-//     width: '100%',
-//     left:0,
-//     bottom:0, 
-//     marginTop: rem(120),
-//     paddingTop: `calc(${theme.spacing.xl} * 2)`,
-//     paddingBottom: `calc(${theme.spacing.xl} * 2)`,
-//     backgroundColor: '#254885',
-//     borderTop: `${rem(1)} solid ${
-//       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-//     }`,
-//     boxShadow:'0px 2px 30px rgba(180, 180, 180, 0.25)'
-//   },
-
-//   logo: {
-//     maxWidth: rem(200),
-
-//     [theme.fn.smallerThan('sm')]: {
-//       display: 'flex',
-//       flexDirection: 'column',
-//       alignItems: 'center',
-//     },
-//   },
-
-//   inner: {
-//     display: 'flex',
-//     justifyContent: 'space-between',
-
-//     [theme.fn.smallerThan('sm')]: {
-//       flexDirection: 'column',
-//       alignItems: 'center',
-//     },
-//   },
-
-//   groups: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-
-//     [theme.fn.smallerThan('sm')]: {
-//       display: 'none',
-//     },
-//   },
-
-//   wrapper: {
-//     width: rem(160),
-//   },
-
-//   link: {
-//     display: 'block',
-//     color: '#FFFFFF',
-//     fontFamily:'Inter',
-//     fontStyle:'normal',
-//     fontWeight:400,
-//     fontSize: '12px',
-//     lineHeight:'15px',
-//     paddingTop: rem(3),
-//     paddingBottom: rem(3),
-
-//     '&:hover': {
-//       textDecoration: 'underline',
-//     },
-//   },
-// }));
-
-// interface FooterLinksProps {
-//   data: {
-//     links: { label: string; link: string }[];
-//   }[];
-// }
-
-// export function FooterLinks({ data }: FooterLinksProps) {
-//   const { classes } = useStyles();
-
-//   const groups = data.map((group) => {
-//     const links = group.links.map((link, index) => (
-//       <Text<"a">
-//         key={index}
-//         className={classes.link}
-//         component="a"
-//         href={link.link}
-//         // onClick={(event) => event.preventDefault()}
-//       >
-//         {link.label}
-//       </Text>
-//     ));
-
-//     return (
-//       <div className={classes.wrapper}>
-//         {links}
-//       </div>
-//     );
-//   });
-//   console.log(groups)
-
-//   return (
-//     <footer className={classes.footer}>
-//       <Container className={classes.inner}>
-//         <div className={classes.logo}>
-//           {/* original size settings */}
-//           <Image alt='Best hospitals logo' src={image12} width={69.5} height={80}/>
-//           {/* slightly bigger image, could fit better on desktop site */}
-//           {/* <Image alt='Best hospitals logo' src={image12} size={20}/> */}
-//         </div>
-//         <div className={classes.groups}>{groups}</div>
-//       </Container>
-//     </footer>
-//   );
-// }
+export default BodyButton
