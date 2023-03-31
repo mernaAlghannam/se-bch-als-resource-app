@@ -1,36 +1,44 @@
+// BodyButton.tsx
 import React from 'react';
-import { Stack, Button } from '@mantine/core';
-import { createStyles, Header, Container, Group, Burger, Image, rem, Text} from '@mantine/core';
-
+import { Stack } from '@mantine/core';
+import { createStyles, rem } from '@mantine/core';
+import ToggleButton from './ToggleButton';
 
 const useStyles = createStyles(() => ({
   inner: {
-    height: "60px",
+    height: '60px',
     display: 'flex',
-    width: "80%",
+    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: rem(10),
-    alignContent: 'center'
-    
+    alignContent: 'center',
   },
 
-  outer:{
+  outer: {
     paddingTop: rem(50),
     paddingLeft: '10%',
-  }
-}))
+  },
+}));
 
-const BodyButton = () => {
+const BodyButton: React.FC = () => {
   const { classes } = useStyles();
-  return (
-    <Stack h={300} className={classes.outer} sx = {(theme) => ({backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8]: theme.colors.gray[0]})}>
-      <Button className={classes.inner} variant='outline'><Text fz="xl">Communication</Text></Button>
-      <Button className={classes.inner} variant='outline'><Text fz="xl">Computer Access</Text></Button>
-      <Button className={classes.inner} variant='outline'><Text fz="xl">Home Access</Text></Button>
-      <Button className={classes.inner} variant='outline'><Text fz="xl">Smart Phone Access</Text></Button>
-    </Stack>
-  )
-}
 
-export default BodyButton
+  return (
+    <Stack
+      h={300}
+      className={classes.outer}
+      sx={(theme) => ({
+        backgroundColor:
+          theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+      })}
+    >
+      <ToggleButton className={classes.inner} label="Communication" />
+      <ToggleButton className={classes.inner} label="Computer Access" />
+      <ToggleButton className={classes.inner} label="Home Access" />
+      <ToggleButton className={classes.inner} label="Smart Phone Access" />
+    </Stack>
+  );
+};
+
+export default BodyButton;
