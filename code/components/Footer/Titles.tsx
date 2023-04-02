@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: 'linear-gradient(0deg, rgba(0, 48, 135, 0.5), rgba(0, 48, 135, 0.5)), url('+img+')',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: rem(5),
+    height: rem(203),
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),
