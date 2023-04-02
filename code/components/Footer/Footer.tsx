@@ -78,23 +78,23 @@ export function FooterLinks({ data }: FooterLinksProps) {
   const { classes } = useStyles();
 
   const groups = data.map((group) => {
-    const links = group.links.map((link, index) => (
-      <Text<"a">
-        key={index}
-        className={classes.link}
-        component="a"
-        href={link.link}
-        fz = "sm"
+    // const links = group.links.map((link, index) => (
+    //   <Text<"a">
+    //     key={index}
+    //     className={classes.link}
+    //     component="a"
+    //     href={link.link}
+    //     fz = "sm"
         
-        // onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </Text>
-    ));
+    //     // onClick={(event) => event.preventDefault()}
+    //   >
+    //     {link.label}
+    //   </Text>
+    // ));
 
     return (
       <div className={classes.wrapper}>
-        {links}
+        {/* {links} */}
       </div>
     );
   });
