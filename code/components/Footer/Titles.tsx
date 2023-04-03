@@ -49,10 +49,10 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontWeight: 600,
-    fontSize: rem(42),
+    fontSize: rem(35),
     fontStyle: 'normal',
     letterSpacing: rem(-1),
-    paddingLeft: theme.spacing.xs,
+    // paddingLeft: theme.spacing.xs,
     paddingRight: theme.spacing.xs,
     color: theme.white,
     marginBottom: theme.spacing.xs,
@@ -61,7 +61,7 @@ const useStyles = createStyles((theme) => ({
     lineHeight: rem(51),
 
     [theme.fn.smallerThan('xs')]: {
-      fontSize: rem(42),
+      fontSize: rem(35),
       textAlign: 'left',
     },
   },

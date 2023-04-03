@@ -4,10 +4,10 @@ import image12 from '../../src/styles/image12.png'
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    position: 'relative',
+    // position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
-    // bottom: rem(0), 
+    bottom: rem(0), 
     // height: rem(200),
     width: '100%',
     marginTop: rem(20),

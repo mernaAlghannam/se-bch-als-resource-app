@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { createStyles, rem , Text, Button, Box } from '@mantine/core';
 import ToggleButton from './ToggleButton';
 import search_questions_choices_from_json from './HelperFunctions/TempNextQuestionChoices'
+import  Title from "../Footer/Titles"
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -41,6 +42,7 @@ const useStyles = createStyles((theme) => ({
 
   outer: {
     paddingTop: rem(20),
+    pddingBottom: rem(20),
     paddingLeft: '10%',
   },
 }));
@@ -51,7 +53,7 @@ interface ToggleButtonProps{
 }
 
 
-const BodyButton: React.FC = () => {
+const BodyContent: React.FC = () => {
   const { classes } = useStyles();
   const [buttonColor, setButtonColor] = useState('transparent')
   const [textColor, setTextColor] = useState('#254885')
@@ -59,12 +61,19 @@ const BodyButton: React.FC = () => {
   var [currQuestion, setCurrQuestion] = useState("How can I assist you today?");
   var [currChoices, setCurChoices] = useState(["Communication", "Home Access", "Computer Access", "Smart Phone Access"])
   var [clickedChoice, setClickedChoice] = useState("Home")
+  var [pageTitle, setPageTitle] = useState("Home")
+  var [image, setImage] = useState("/titleimghome.PNG")
 
   const handleButtonClick = () => {
     let [question, choices_list] = search_questions_choices_from_json(clickedChoice)
     if (question != 'undefined'){
       setCurChoices(choices_list)
       setCurrQuestion(question)
+    }
+
+    if(clickedChoice == "Communication"){
+      setPageTitle("Communication")
+      setImage("/commImg.PNG")
     }
   }
 
@@ -74,6 +83,8 @@ const BodyButton: React.FC = () => {
 
 
   return (
+    <div>
+      <Title titleImg={image} title={pageTitle} />
     <Stack
       spacing="xl"
       className={classes.outer}
@@ -95,7 +106,8 @@ const BodyButton: React.FC = () => {
       ))}
 
     </Stack>
+    </div>
   );
 };
 
-export default BodyButton;
+export default BodyContent;
