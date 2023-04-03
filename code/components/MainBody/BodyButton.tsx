@@ -2,43 +2,45 @@
 import React from 'react';
 import { Stack } from '@mantine/core';
 import { useEffect, useState } from "react";
-import { createStyles, rem , Title, Text, Button } from '@mantine/core';
+import { createStyles, rem , Text, Button, Box } from '@mantine/core';
 import ToggleButton from './ToggleButton';
-import { choices_json } from './HelperFunctions/ChoicesJson';
-import { questions_json } from './HelperFunctions/QuestionsJson';
+import search_questions_choices_from_json from './HelperFunctions/TempNextQuestionChoices'
 
 const useStyles = createStyles((theme) => ({
   inner: {
-    height: '60px',
+    height: '57px',
     display: 'flex',
-    width: '80%',
+    width: '87%',
+    border: '2px solid #254885',
+    borderRadius: rem(10),
+    // width: rem(320),
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: rem(10),
     alignContent: 'center',
   },
 
   text: {
     fontWeight: 600,
-    fontSize: rem(17),
+    paddingTop: rem(12),
+    width: '80%',
+    fontSize: rem(20),
     fontStyle: 'normal',
     letterSpacing: rem(-1),
-    // paddingLeft: theme.spacing.xs,
-    // paddingRight: theme.spacing.xs,
     color: '#254885',
-    marginBottom: theme.spacing.xs,
+    // marginBottom: theme.spacing.xs,
     textAlign: 'left',
     fontFamily: `Montserrat, ${theme.fontFamily}`,
-    lineHeight: rem(13),
+    // lineHeight: rem(16),
 
     [theme.fn.smallerThan('xs')]: {
-      fontSize: rem(13),
+      fontSize: rem(20),
       textAlign: 'left',
+      width: '80%'
     },
   },
 
   outer: {
-    paddingTop: rem(50),
+    paddingTop: rem(20),
     paddingLeft: '10%',
   },
 }));
@@ -53,68 +55,27 @@ const BodyButton: React.FC = () => {
   const { classes } = useStyles();
   const [buttonColor, setButtonColor] = useState('transparent')
   const [textColor, setTextColor] = useState('#254885')
-  const complete_choices = choices_json.data
-  const complete_question = questions_json.data
+
   var [currQuestion, setCurrQuestion] = useState("How can I assist you today?");
   var [currChoices, setCurChoices] = useState(["Communication", "Home Access", "Computer Access", "Smart Phone Access"])
   var [clickedChoice, setClickedChoice] = useState("Home")
 
   const handleButtonClick = () => {
-      var question;
-      var next_question_exists = true
-        // if (buttonColor === 'transparent'){
-        //     setButtonColor('#254885')
-        //     setTextColor('transparent')
-        // } else {
-        //     setButtonColor('transparent')
-        //     setTextColor('#254885')
-        // }
-        // console.log( complete_choices.length)
-    for (let i= 0 ; i < complete_choices.length ; i++) {
-      if (complete_choices[i].attributes.Description === clickedChoice){
-        let temp = complete_choices[i].attributes.Question.data?.attributes.Question
-        if (String(temp) == "undefined"){
-          next_question_exists = false
-          break
-        }
-         setCurrQuestion(String(temp))
-         question = String(temp)
-          console.log(temp)
-      }
+    let [question, choices_list] = search_questions_choices_from_json(clickedChoice)
+    if (question != 'undefined'){
+      setCurChoices(choices_list)
+      setCurrQuestion(question)
     }
-
-    if (next_question_exists){
-
-    for (let i= 0 ; i < complete_question.length ; i++) {
-      if (complete_question[i].attributes.Question === question){
-        var temp_list : string[] = []
-        let choice_list_length : number = complete_question[i].attributes.Choices.data.length
-        console.log(complete_question[i].attributes.Choices.data)
-        let choice_data = complete_question[i].attributes.Choices.data
-        console.log(choice_list_length)
-        for (let j= 0 ; j < choice_list_length; j++) {
-          console.log(choice_data)
-          temp_list.push(String(complete_question[i].attributes.Choices.data[j]?.attributes.Description))
-          let temp = complete_question[i].attributes.Choices.data[j]?.attributes.Description
-          console.log(temp)
-      }
-      setCurChoices(temp_list)
-    }
-  }
-  }
   }
 
   useEffect(() => {
-    // not fetch any grades when the current class id is empty
-    // if (currClassId != "")
-    //   fetchGradeData();
     handleButtonClick()
   }, [clickedChoice])
 
 
   return (
     <Stack
-      h={300}
+      spacing="xl"
       className={classes.outer}
       sx={(theme) => ({
         backgroundColor:
@@ -122,14 +83,14 @@ const BodyButton: React.FC = () => {
       })}
     >
       <Text className={classes.text}> {currQuestion} </Text>
-      {currChoices.map((choice) => (    
+      {currChoices.map((choice) => (  
         <Button
             className={classes.inner}
             variant="outline"
             onClick = {() => setClickedChoice(choice)}
             style = {{backgroundColor: buttonColor, color: textColor}}
             >
-                <Text fz = "xl" className={classes.text}>{choice}</Text>
+              <Text style={{display: 'block', fontSize: rem(16)}}>{choice}</Text>
         </Button>
       ))}
 

@@ -4,13 +4,15 @@ import image12 from '../../src/styles/image12.png'
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    position: 'absolute',
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    // bottom: rem(0), 
+    // height: rem(200),
     width: '100%',
-    left:0,
-    bottom:0, 
-    // marginTop: rem(120),
+    marginTop: rem(20),
     paddingTop: `10px`,
-    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
+    paddingBottom: `calc(${theme.spacing.xl})`,
     backgroundColor: '#254885',
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
@@ -20,6 +22,7 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     maxWidth: rem(200),
+    paddingRight: `20px`,
 
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
@@ -31,9 +34,11 @@ const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
 
     [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
+      display: 'flex',
+      justifyContent: 'space-between',
       alignItems: 'center',
     },
   },
@@ -41,9 +46,11 @@ const useStyles = createStyles((theme) => ({
   groups: {
     display: 'flex',
     flexWrap: 'wrap',
+    width: rem(230),
 
     [theme.fn.smallerThan('sm')]: {
-      display: 'none',
+      display: 'flex',
+      flexWrap: 'wrap',
     },
   },
 
@@ -59,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight:400,
     fontSize: '12px',
     lineHeight:'15px',
-    paddingTop: rem(3),
+    paddingTop: rem(10),
     paddingBottom: rem(3),
 
     '&:hover': {
@@ -78,23 +85,23 @@ export function FooterLinks({ data }: FooterLinksProps) {
   const { classes } = useStyles();
 
   const groups = data.map((group) => {
-    // const links = group.links.map((link, index) => (
-    //   <Text<"a">
-    //     key={index}
-    //     className={classes.link}
-    //     component="a"
-    //     href={link.link}
-    //     fz = "sm"
+    const links = group.links.map((link, index) => (
+      <Text<"a">
+        key={index}
+        className={classes.link}
+        component="a"
+        href={link.link}
+        fz = "sm"
         
-    //     // onClick={(event) => event.preventDefault()}
-    //   >
-    //     {link.label}
-    //   </Text>
-    // ));
+        // onClick={(event) => event.preventDefault()}
+      >
+        {link.label}
+      </Text>
+    ));
 
     return (
       <div className={classes.wrapper}>
-        {/* {links} */}
+        {links}
       </div>
     );
   });
