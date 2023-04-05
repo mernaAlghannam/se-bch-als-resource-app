@@ -5,9 +5,9 @@ export default function tempNextChoiceSelectionFromJson(clickedChoice : string):
   const complete_choices = choices_json.data
   const complete_question = questions_json.data
   const choice_selected = clickedChoice
-  var choices_list : string[] = []
-  var next_question_exists = true
-  var question = ""
+  let choices_list : string[] = []
+  let next_question_exists = true
+  let question = ""
 
   for (let i= 0 ; i < complete_choices.length ; i++) {
     if (complete_choices[i].attributes.Description === choice_selected){
@@ -20,8 +20,6 @@ export default function tempNextChoiceSelectionFromJson(clickedChoice : string):
   }
 
   if (next_question_exists){
-
-    var choices_list : string[] = []
     for (let i= 0 ; i < complete_question.length ; i++) {
       if (complete_question[i].attributes.Question === question){
         let choice_list_length : number = complete_question[i].attributes.Choices.data.length

@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
     bottom: rem(0), 
     // height: rem(200),
     width: '100%',
-    marginTop: rem(20),
+    marginTop: rem(30),
     paddingTop: `10px`,
     paddingBottom: `calc(${theme.spacing.xl})`,
     backgroundColor: '#254885',
@@ -23,23 +23,25 @@ const useStyles = createStyles((theme) => ({
   logo: {
     maxWidth: rem(200),
     paddingRight: `20px`,
+    paddingTop: rem(20),
 
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      paddingTop: rem(20),
     },
   },
 
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'start',
 
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'center',
+      alignItems: 'start',
     },
   },
 
@@ -66,7 +68,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight:400,
     fontSize: '12px',
     lineHeight:'15px',
-    paddingTop: rem(10),
+    paddingTop: rem(20),
     paddingBottom: rem(3),
 
     '&:hover': {
@@ -87,7 +89,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
       <Text<"a">
-        key={index}
+        key={link.link}
         className={classes.link}
         component="a"
         href={link.link}
@@ -100,7 +102,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
     ));
 
     return (
-      <div className={classes.wrapper}>
+      <div key={0} className={classes.wrapper}>
         {links}
       </div>
     );

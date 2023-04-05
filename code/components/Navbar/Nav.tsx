@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStyles, Header, Container, Group, Burger, Image, rem} from '@mantine/core';
 
-const HEADER_HEIGHT = rem(64);
+const HEADER_HEIGHT = rem(73.94);
 
 const useStyles = createStyles(() => ({
   inner: {

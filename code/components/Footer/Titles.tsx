@@ -31,6 +31,7 @@ const useStyles = createStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: rem(203),
+    // width: "auto",
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),
