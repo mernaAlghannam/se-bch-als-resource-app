@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "choice_to_question_maps",
+  "info": {
+    "singularName": "choice-to-question-map",
+    "pluralName": "choice-to-question-maps",
+    "displayName": "ChoiceToQuestionMap",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ChoiceName": {
+      "type": "string"
+    },
+    "tree_level": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tree-level.tree-level",
+      "inversedBy": "ChoiceList"
+    },
+    "ChoiceToSolutionMap": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::solution.solution",
+      "inversedBy": "PreviousChoiceConnected"
+    },
+    "previous_questions_connected": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-to-choice-map.question-to-choice-map",
+      "mappedBy": "question_to_choices"
+    },
+    "choice_to_question": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::question-to-choice-map.question-to-choice-map",
+      "mappedBy": "previous_choices_connected"
+    }
+  }
+}

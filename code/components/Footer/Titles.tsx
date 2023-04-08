@@ -6,7 +6,7 @@ import { Title, createStyles, rem } from '@mantine/core';
 import React from 'react'
 
 let img = ""
-const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
+const Titles = ({isHomePage, titleImg, title}:{isHomePage:boolean, titleImg: string, title: string}) => {
   img = titleImg
   const { classes} = useStyles();
   return (

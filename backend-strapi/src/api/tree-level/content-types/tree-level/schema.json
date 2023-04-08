@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tree_levels",
+  "info": {
+    "singularName": "tree-level",
+    "pluralName": "tree-levels",
+    "displayName": "TreeLevel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Level": {
+      "type": "biginteger"
+    },
+    "ChoiceList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::choice-to-question-map.choice-to-question-map",
+      "mappedBy": "tree_level"
+    },
+    "QuestionList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-to-choice-map.question-to-choice-map",
+      "mappedBy": "tree_level"
+    }
+  }
+}
