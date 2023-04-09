@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
 import { Stack, Text} from '@mantine/core';
 import TestimonialsOrHandouts from '../../components/MainBody/SolutionPageContent/TestimonialOrHandouts';
 import Resources from '../../components/MainBody/SolutionPageContent/Resources';
 import { ISolution } from '@/types/api_types';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
+import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
 
 interface SolutionContentProps{
   solution: ISolution,
-  handoutTestimonialList: HandoutOrTestimonialLink[],
-  resourceList: ResourceLink[],
-  pageContent: PageContentType[]
+  hasSolution: boolean
 }
 
-const SolutionPages: React.FC<SolutionContentProps> = ({solution, handoutTestimonialList, resourceList, pageContent}) => {
+const SolutionPages: React.FC<SolutionContentProps> = ({solution, hasSolution}) => {
   const { classes } = bodyContentUseStyles();
+  let [resourceList, setResourceList] = useState<ResourceLink[]>([])
+  let [handoutTestimonialList, setHandoutTestimonialList] = useState<HandoutOrTestimonialLink[]>([])
+  let [pageContent, setPageContent] = useState<PageContentType[]>([])
+
+  const getSolutionPageContent =async () => {
+    let [resource_list, handouts_testimonials_list, page_content] = await getSolutionPageContentForChoice(solution.id)
+    setResourceList(resource_list)
+    setHandoutTestimonialList(handouts_testimonials_list)
+    setPageContent(page_content)
+  }
+  
+  useEffect(() => {
+    if (hasSolution && solution.id != ""){
+      getSolutionPageContent()
+    }
+  }, [hasSolution])
 
   return (
     <div>

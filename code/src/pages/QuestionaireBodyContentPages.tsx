@@ -4,10 +4,8 @@ import  Title from "../../components/Footer/Titles"
 import { IQuestion, IChoice , IBodyContent, ISolution} from '@/types/api_types';
 import search_questions_choices_from_json from './api/TempNextQuestionChoices';
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
-import Resources from '../../components/MainBody/SolutionPageContent/Resources';
-import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
+// import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
 import { HandoutOrTestimonialLink, ResourceLink, PageContentType } from '@/types/dataTypes';
-import TestimonialsOrHandouts from '../../components/MainBody/SolutionPageContent/TestimonialOrHandouts';
 import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
 
@@ -61,26 +59,12 @@ export const QuestionaireBodyContent: React.FC = () => {
     }
   }
 
-  const getSolutionPageContent =async () => {
-    let [resource_list, handouts_testimonials_list, page_content] = await getSolutionPageContentForChoice(solution.id)
-    setResourceList(resource_list)
-    setHandoutTestimonialList(handouts_testimonials_list)
-    setPageContent(page_content)
-  }
-
   useEffect(() => {
     console.log(clickedChoice)
     if (clickedChoice != null){
       updateChoicesAndQuestions()
     }
   }, [clickedChoice])
-
-  useEffect(() => {
-    console.log(clickedChoice)
-    if (hasSolution && solution.id != ""){
-      getSolutionPageContent()
-    }
-  }, [hasSolution])
 
 
   const hasPrev = () => {
@@ -118,7 +102,7 @@ export const QuestionaireBodyContent: React.FC = () => {
       ))} 
     </Stack>
     : 
-    <SolutionPages solution={solution} handoutTestimonialList={handoutTestimonialList} resourceList={resourceList} pageContent={pageContent}/>
+    <SolutionPages solution={solution} hasSolution={hasSolution}/>
     }
     </div>
   );
