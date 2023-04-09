@@ -1,7 +1,6 @@
 import React from 'react'
-import { Stack, createStyles, rem , Text, Button } from '@mantine/core';
-import { PageContentType, ResourceLink } from '@/types/dataTypes';
-import { IconFileDescription } from '@tabler/icons-react';
+import { Stack, createStyles, rem , Text} from '@mantine/core';
+import { PageContentType } from '@/types/dataTypes';
 
 
 const useStyles = createStyles((theme) => ({

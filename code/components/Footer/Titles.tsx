@@ -1,11 +1,9 @@
-import { Title, ChevronIcon } from '@mantine/core';
-import React from 'react'
-
-import { useState } from 'react';
 import {
+  Title,
   createStyles,
-  rem,
+  rem
 } from '@mantine/core';
+import { useState } from 'react';
 import { IconChevronLeft} from '@tabler/icons-react';
 
 
