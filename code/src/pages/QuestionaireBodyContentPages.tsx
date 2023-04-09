@@ -4,8 +4,6 @@ import  Title from "../../components/Footer/Titles"
 import { IQuestion, IChoice , IBodyContent, ISolution} from '@/types/api_types';
 import search_questions_choices_from_json from './api/TempNextQuestionChoices';
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
-// import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
-import { HandoutOrTestimonialLink, ResourceLink, PageContentType } from '@/types/dataTypes';
 import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
 
@@ -16,10 +14,6 @@ export const QuestionaireBodyContent: React.FC = () => {
   let [currChoices, setCurChoices] = useState<IChoice[] >([])
   let [clickedChoice, setClickedChoice] = useState<IChoice>({id:"1", title:"Home"})
   let [solution, setSolution] = useState<ISolution>({id:"", title:""})
-
-  let [resourceList, setResourceList] = useState<ResourceLink[]>([])
-  let [handoutTestimonialList, setHandoutTestimonialList] = useState<HandoutOrTestimonialLink[]>([])
-  let [pageContent, setPageContent] = useState<PageContentType[]>([])
 
   let [hasSolution, setHasSolution] = useState(false)
 
