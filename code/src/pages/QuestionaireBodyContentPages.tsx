@@ -13,7 +13,7 @@ import ToggleButton from '../../components/MainBody/TogglebButton';
 export const QuestionaireBodyContent: React.FC = () => {
   const { classes } = bodyContentUseStyles();
 
-  let [currQuestion, setCurrQuestion] = useState<IQuestion>({id: "1", title:"How can I assist you today?"});
+  let [currQuestion, setCurrQuestion] = useState<IQuestion>({id: "", title:""});
   let [currChoices, setCurChoices] = useState<IChoice[] >([])
   let [clickedChoice, setClickedChoice] = useState<IChoice>({id:"1", title:"Home"})
   let [solution, setSolution] = useState<ISolution>({id:"", title:""})
@@ -126,7 +126,7 @@ export const QuestionaireBodyContent: React.FC = () => {
     })}
   >
     <Text className={classes.text}> {solution.title} </Text>
-    {!pageContent.length ? <></> : <div>hi</div>}
+    {!pageContent.length ? <></> : <div> This is place holder content</div>}
     {!resourceList.length ? <></>:<Resources data={resourceList}></Resources> }
     {!handoutTestimonialList.length ? <></>:<TestimonialsOrHandouts data={handoutTestimonialList}></TestimonialsOrHandouts> }
   </Stack>
