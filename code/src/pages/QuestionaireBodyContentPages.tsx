@@ -74,11 +74,16 @@ export const QuestionaireBodyContent: React.FC = () => {
 
   const prevQuestion = () => {
       if (prevSelectedContent.length > 1) {
-          setCurrQuestion(prevSelectedContent[prevSelectedContent.length-2].question);
-          setClickedChoice(prevSelectedContent[prevSelectedContent.length-2].prevChoice);
-          setCurChoices(prevSelectedContent[prevSelectedContent.length-2].choiceList)
-          setPrevSelectedContent(prevSelectedContent.slice(0, -2))
-          console.log("its length"+prevSelectedContent.length)
+          let i = 2
+        if (hasSolution){
+          i=1
+        }
+        setCurrQuestion(prevSelectedContent[prevSelectedContent.length-i].question);
+        setClickedChoice(prevSelectedContent[prevSelectedContent.length-i].prevChoice);
+        setCurChoices(prevSelectedContent[prevSelectedContent.length-i].choiceList)
+        setPrevSelectedContent(prevSelectedContent.slice(0, -i))
+        console.log("its length"+prevSelectedContent.length)
+        console.log("hassol"+hasSolution)
       }
   };
 
