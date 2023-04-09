@@ -1,15 +1,14 @@
-import { Stack, rem , Text, Button } from '@mantine/core';
+import { Stack, Text} from '@mantine/core';
 import { useEffect, useState } from "react";
-import  Title from "../Footer/Titles"
+import  Title from "../../components/Footer/Titles"
 import { IQuestion, IChoice , IBodyContent, ISolution} from '@/types/api_types';
 import search_questions_choices_from_json from '../../utiles/TempNextQuestionChoices';
-import { bodyContentUseStyles } from './HelperFunctions/BodyContentStyle';
-import Resources from './SolutionPageContent/Resources';
+import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
+import Resources from '../../components/MainBody/SolutionPageContent/Resources';
 import getSolutionPageContentForChoice from '../../utiles/GetSolutionPageForChoice';
 import { HandoutOrTestimonialLink, ResourceLink, PageContentType } from '@/types/dataTypes';
-import TestimonialsOrHandouts from './SolutionPageContent/TestimonialOrHandouts';
-
-export let prevSelectedContent : IBodyContent[] = []
+import TestimonialsOrHandouts from '../../components/MainBody/SolutionPageContent/TestimonialOrHandouts';
+import ToggleButton from '../../components/MainBody/TogglebButton';
 
 export const QuestionaireBodyContent: React.FC = () => {
   const { classes } = bodyContentUseStyles();
@@ -23,12 +22,11 @@ export const QuestionaireBodyContent: React.FC = () => {
   let [handoutTestimonialList, setHandoutTestimonialList] = useState<HandoutOrTestimonialLink[]>([])
   let [pageContent, setPageContent] = useState<PageContentType[]>([])
 
-
-  let [isHomePage, setIsHomePage] = useState(true)
   let [hasSolution, setHasSolution] = useState(false)
 
   let [pageTitle, setPageTitle] = useState("Home")
   let [image, setImage] = useState("/titleimghome.PNG")
+  let [prevSelectedContent, setPrevSelectedContent] = useState< IBodyContent[]>([])
 
   // do not know where to update button content
 
@@ -43,20 +41,22 @@ export const QuestionaireBodyContent: React.FC = () => {
     }
     console.log(hasSol)
     if (question.title != ''){
+      setPrevSelectedContent(prevSelectedContent.concat({question: currQuestion, prevChoice: clickedChoice, choiceList:  currChoices}))
       setCurChoices(choices_list)
       setCurrQuestion(question)
-      prevSelectedContent.push({questionId: question.id, questionName: question.title, choiceList: choices_list})
-    }
-
-    console.log(prevSelectedContent.length)
-    for (const element of prevSelectedContent) {
-      console.log("prev content: "+element.questionName)
     }
 
     if(clickedChoice.title == "Communication"){
       setPageTitle("Communication")
       setImage("/commImg.PNG")
-      setIsHomePage(false)
+    } else if (prevSelectedContent.length < 2){
+      setPageTitle("Home")
+      setImage("/titleimghome.PNG")
+    }
+
+    console.log("updateq"+prevSelectedContent.length)
+    for (const element of prevSelectedContent) {
+      console.log("prev content: "+element.question.title)
     }
   }
 
@@ -82,9 +82,24 @@ export const QuestionaireBodyContent: React.FC = () => {
   }, [hasSolution])
 
 
+  const hasPrev = () => {
+    console.log("checking"+prevSelectedContent.length)
+    return prevSelectedContent.length > 1;
+  };
+
+  const prevQuestion = () => {
+      if (prevSelectedContent.length > 1) {
+          setCurrQuestion(prevSelectedContent[prevSelectedContent.length-2].question);
+          setClickedChoice(prevSelectedContent[prevSelectedContent.length-2].prevChoice);
+          setCurChoices(prevSelectedContent[prevSelectedContent.length-2].choiceList)
+          setPrevSelectedContent(prevSelectedContent.slice(0, -2))
+          console.log("its length"+prevSelectedContent.length)
+      }
+  };
+
   return (
     <div>
-    <Title isHomePage={isHomePage} titleImg={image} title={pageTitle} />
+    <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
     {!hasSolution ? 
     <Stack
       spacing="xl"
@@ -96,13 +111,9 @@ export const QuestionaireBodyContent: React.FC = () => {
     >
       <Text className={classes.text}> {currQuestion.title} </Text>
       {currChoices.map((choice) => (  
-        <Button key={choice.id}
-            className={classes.inner}
-            variant="outline"
-            onClick = {() => setClickedChoice(choice)}
-            >
-              <Text fz = "xl" style={{fontSize: rem(16), whiteSpace: "normal", textAlign: 'center'}}>{choice.title}</Text>
-        </Button>
+        <div key={choice.id}>
+        <ToggleButton setClickedChoice={setClickedChoice} className={classes.inner} choice={choice} />
+        </div>
       ))} 
     </Stack>
     : 

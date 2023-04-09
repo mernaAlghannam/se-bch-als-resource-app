@@ -8,20 +8,21 @@ import { IconChevronLeft} from '@tabler/icons-react';
 
 
 let img = ""
-const Titles = ({isHomePage, titleImg, title}:{isHomePage:boolean, titleImg: string, title: string}) => {
+const Titles = ({hasPrev, prevQuestion, titleImg, title}:{hasPrev: boolean, prevQuestion: () => any, titleImg: string, title: string}) => {
   img = titleImg
   const { classes} = useStyles();
   const ChevronIcon = IconChevronLeft;
+
   return (
     <div className={classes.wrapper}>
-      { isHomePage ? <></> :
+        {hasPrev ? (
         <ChevronIcon
-          className={classes.chevron}
-          size="2.5rem"
-          stroke={2.5}
-          onClick={(event) => event.preventDefault()}
-        />
-      }
+        className={classes.chevron}
+        size="2.5rem"
+        stroke={2.5}
+        onClick={prevQuestion}
+      />) : null}
+      
       <div className={classes.inner}>
         <Title className={classes.title}>
           {title}
@@ -50,7 +51,6 @@ const useStyles = createStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: rem(203),
-    // width: "auto",
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),

@@ -14,7 +14,7 @@ export interface ISolution {
 }
 
 export interface IBodyContent {
-  questionId: string,
-  questionName: String,
+  question: IQuestion,
+  prevChoice: IChoice,
   choiceList: IChoice[]
 }

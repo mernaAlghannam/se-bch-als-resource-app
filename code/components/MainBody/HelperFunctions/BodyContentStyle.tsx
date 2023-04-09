@@ -30,6 +30,14 @@ export const bodyContentUseStyles = createStyles((theme) => ({
     },
   },
 
+  chevron: {
+    transition: 'transform 200ms ease',
+    position: "absolute", 
+    left: "2.02%", 
+    top: "12.36%", 
+    color: "#FFFFFF"
+  },
+
   text: {
     fontWeight: 600,
     paddingTop: rem(12),
