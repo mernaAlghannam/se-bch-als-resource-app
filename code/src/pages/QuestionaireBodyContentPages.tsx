@@ -2,13 +2,14 @@ import { Stack, Text} from '@mantine/core';
 import { useEffect, useState } from "react";
 import  Title from "../../components/Footer/Titles"
 import { IQuestion, IChoice , IBodyContent, ISolution} from '@/types/api_types';
-import search_questions_choices_from_json from '../../utiles/TempNextQuestionChoices';
+import search_questions_choices_from_json from './api/TempNextQuestionChoices';
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
 import Resources from '../../components/MainBody/SolutionPageContent/Resources';
-import getSolutionPageContentForChoice from '../../utiles/GetSolutionPageForChoice';
+import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
 import { HandoutOrTestimonialLink, ResourceLink, PageContentType } from '@/types/dataTypes';
 import TestimonialsOrHandouts from '../../components/MainBody/SolutionPageContent/TestimonialOrHandouts';
 import ToggleButton from '../../components/MainBody/TogglebButton';
+import SolutionPages from './SolutionPages';
 
 export const QuestionaireBodyContent: React.FC = () => {
   const { classes } = bodyContentUseStyles();
@@ -117,19 +118,7 @@ export const QuestionaireBodyContent: React.FC = () => {
       ))} 
     </Stack>
     : 
-    <Stack
-    spacing="xl"
-    className={classes.outer}
-    sx={(theme) => ({
-      backgroundColor:
-        theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-    })}
-  >
-    <Text className={classes.text}> {solution.title} </Text>
-    {!pageContent.length ? <></> : <div> This is place holder content</div>}
-    {!resourceList.length ? <></>:<Resources data={resourceList}></Resources> }
-    {!handoutTestimonialList.length ? <></>:<TestimonialsOrHandouts data={handoutTestimonialList}></TestimonialsOrHandouts> }
-  </Stack>
+    <SolutionPages solution={solution} handoutTestimonialList={handoutTestimonialList} resourceList={resourceList} pageContent={pageContent}/>
     }
     </div>
   );

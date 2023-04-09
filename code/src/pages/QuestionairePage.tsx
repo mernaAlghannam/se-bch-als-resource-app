@@ -1,6 +1,5 @@
 import React from 'react'
-import FooterTitle from '../../components/Footer/Titles'
-import {QuestionaireBodyContent} from './QuestionaireBodyContent'
+import {QuestionaireBodyContent} from './QuestionaireBodyContentPages'
 
 const QuestionairePage = () => {
   return (
