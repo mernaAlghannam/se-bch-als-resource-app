@@ -1,16 +1,29 @@
-//links: https://ui.mantine.dev/category/hero
-//
-
-
-import { Title, createStyles, rem } from '@mantine/core';
+import { Title, ChevronIcon } from '@mantine/core';
 import React from 'react'
+
+import { useState } from 'react';
+import {
+  createStyles,
+  rem,
+} from '@mantine/core';
+import { IconChevronLeft} from '@tabler/icons-react';
+
 
 let img = ""
 const Titles = ({isHomePage, titleImg, title}:{isHomePage:boolean, titleImg: string, title: string}) => {
   img = titleImg
   const { classes} = useStyles();
+  const ChevronIcon = IconChevronLeft;
   return (
     <div className={classes.wrapper}>
+      { isHomePage ? <></> :
+        <ChevronIcon
+          className={classes.chevron}
+          size="2.5rem"
+          stroke={2.5}
+          onClick={(event) => event.preventDefault()}
+        />
+      }
       <div className={classes.inner}>
         <Title className={classes.title}>
           {title}
@@ -23,6 +36,14 @@ const Titles = ({isHomePage, titleImg, title}:{isHomePage:boolean, titleImg: str
 export default Titles;
 
 const useStyles = createStyles((theme) => ({
+
+  chevron: {
+    transition: 'transform 200ms ease',
+    position: "absolute", 
+    left: "2.02%", 
+    top: "15.36%", 
+    color: "#FFFFFF"
+  },
   wrapper: {
     position: 'relative',
     paddingTop: rem(10),

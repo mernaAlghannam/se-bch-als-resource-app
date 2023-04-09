@@ -1,4 +1,4 @@
-import { IChoice, IQuestion } from '@/types/api_types';
+import { IChoice, IQuestion, ISolution } from '@/types/api_types';
 
 const fetchAnyData = async (APIURL:string): Promise<any> => {
   const res = await fetch(APIURL, {
@@ -8,10 +8,12 @@ const fetchAnyData = async (APIURL:string): Promise<any> => {
   return await res.json();
 }
 
-export default async function tempNextChoiceSelectionFromJson(clickedChoice : IChoice): Promise<[IQuestion, IChoice[]]> {
+export default async function tempNextChoiceSelectionFromJson(clickedChoice : IChoice): Promise<[IQuestion, IChoice[], boolean, ISolution]> {
   const choice_selected_id = clickedChoice.id
   let choices_list : IChoice[] = []
   let question : IQuestion = {id:"", title:""}
+  let hasSolution = false
+  let solution : ISolution = {id: "", title: ""}
   // console.log(choice_selected_id)
 
   if (clickedChoice.title == "Home"){
@@ -31,7 +33,11 @@ export default async function tempNextChoiceSelectionFromJson(clickedChoice : IC
 
     //if next question does not exist
     if (question_json.data.attributes.choice_to_question.data == null){
-      return [question, choices_list]
+      if (question_json.data.attributes.ChoiceToSolutionMap.data != null){
+        hasSolution = true
+        solution = {id: question_json.data.attributes.ChoiceToSolutionMap.data.id, title: question_json.data.attributes.ChoiceToSolutionMap.data.attributes.Title}
+      }
+      return [question, choices_list, hasSolution, solution]
     }
     question = {id: question_json.data.attributes.choice_to_question.data.id, title:  question_json.data.attributes.choice_to_question.data.attributes.QuestionName}
     // console.log(question)
@@ -44,11 +50,11 @@ export default async function tempNextChoiceSelectionFromJson(clickedChoice : IC
 
   let temp_choicesjson = choice_json.data.attributes.question_to_choices.data
   // console.log(temp_choicesjson)
-  for (let j= 0 ; j < temp_choicesjson.length; j++) {
-      choices_list.push({id: temp_choicesjson[j].id, title: temp_choicesjson[j].attributes.ChoiceName})
+  for (const element of temp_choicesjson) {
+      choices_list.push({id: element.id, title: element.attributes.ChoiceName})
       // console.log(temp_choicesjson[j].attributes.ChoiceName)
   }
 
-  return [question, choices_list]
+  return [question, choices_list, hasSolution, solution]
 
 }

@@ -93,6 +93,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
         className={classes.link}
         component="a"
         href={link.link}
+        target="_blank"
         fz = "sm"
         
         // onClick={(event) => event.preventDefault()}

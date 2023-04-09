@@ -8,6 +8,11 @@ export interface IQuestion {
   title: string;
 }
 
+export interface ISolution {
+  id: string;
+  title: string;
+}
+
 export interface IBodyContent {
   questionId: string,
   questionName: String,

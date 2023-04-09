@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack, createStyles, rem , Text, Button } from '@mantine/core';
-import { ResourceLink } from '@/types/dataTypes';
+import { PageContentType, ResourceLink } from '@/types/dataTypes';
 import { IconFileDescription } from '@tabler/icons-react';
 
 
@@ -50,7 +50,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 
-const Resources = ({data}: {data: ResourceLink[]}) => {
+const PageContent = ({data}: {data: PageContentType[]}) => {
   const { classes } = useStyles()
 
 
@@ -58,26 +58,14 @@ const Resources = ({data}: {data: ResourceLink[]}) => {
     <div>
       <Stack
       spacing="xl"
-      className={classes.outer}
-      sx={(theme) => ({
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-      })}
     >
       <Text className={classes.text}> {"Resources"} </Text>
-      {data.map((resource) => (  
-        <Button key={resource.id}
-          className={classes.inner}
-          variant="outline"
-          leftIcon = {<IconFileDescription color='#254885'/>}
-          component = "a"
-          href = {resource.url}
-          >
-            {resource.title}
-        </Button>
+      {data.map((pageContent) => ( 
+        <></>
       ))}
     </Stack>
     </div> 
   )
 }
 
-export default Resources
+export default PageContent

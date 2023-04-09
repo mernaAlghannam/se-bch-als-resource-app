@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_testimonial_handout_link_link_contents",
+  "info": {
+    "displayName": "LinkContent"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Link": {
+      "type": "string"
+    }
+  }
+}
