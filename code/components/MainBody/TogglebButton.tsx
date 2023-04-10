@@ -3,18 +3,18 @@ import {Button, rem, Text} from '@mantine/core';
 import { IChoice } from '@/types/api_types';
 
 interface ToggleButtonProps{
-    setClickedChoice: Dispatch<SetStateAction<IChoice>>,
+    handleClick: (choice: IChoice) => void,
     choice: IChoice;
     className: string;
 }
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({setClickedChoice, choice, className}) => {
+const ToggleButton: React.FC<ToggleButtonProps> = ({handleClick, choice, className}) => {
 
     return(
         <Button key={choice.id}
             className={className}
             variant="outline"
-            onClick = {() => setClickedChoice(choice)}
+            onClick = {() =>handleClick(choice)}
             >
               {/* <Link href={"/"+choice}> */}
               <Text fz = "xl" style={{fontSize: rem(16), whiteSpace: "normal", textAlign: 'center'}}>{choice.title}</Text>
