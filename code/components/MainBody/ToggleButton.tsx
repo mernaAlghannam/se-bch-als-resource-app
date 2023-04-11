@@ -13,7 +13,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({label, className}) => {
     const handleButtonClick = () => {
         if (buttonColor === 'transparent'){
             setButtonColor('#254885')
-            setTextColor('transparent')
+            setTextColor('white')
         } else {
             setButtonColor('transparent')
             setTextColor('#254885')
@@ -27,7 +27,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({label, className}) => {
             onClick = {handleButtonClick}
             style = {{backgroundColor: buttonColor, color: textColor}}
             >
-                <Text fz = "xl">{label}</Text>
+                <Text fz = "xl" style={{color: textColor}}>{label}</Text>
         </Button>
     )
 }
