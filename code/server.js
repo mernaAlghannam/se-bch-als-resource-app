@@ -11,8 +11,14 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
     createServer((req, res) => {
-        const parsedUrl = parse(req.url, true);
-        handle(req, res, parsedUrl);
+        try {
+            const parsedUrl = parse(req.url, true);
+            handle(req, res, parsedUrl);
+        } catch (err) {
+            console.error(err);
+            res.statusCode = 500;
+            res.end('Internal Server Error');
+        }
     }).listen(port, err => {
         if (err) throw err;
         console.log(`> Ready on http://${hostname}:${port}`);
