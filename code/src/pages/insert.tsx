@@ -15,6 +15,7 @@ const Insert = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+       try {
         const response = await fetch("http://localhost:3000/api/insert", {
             method: "POST",
             headers: {
@@ -35,7 +36,9 @@ const Insert = () => {
         }
 
         setData({ name: "", age: "" });
-
+       } catch (error) {
+              console.log(error);
+         }
     }
 
 }
