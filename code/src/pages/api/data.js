@@ -6,7 +6,7 @@ async function fetchData(req, res) {
   try {
     await client.connect();
     const db = client.db(process.env.MONGODB_DB);
-    const collection = db.collection('yourCollectionName');
+    const collection = db.collection('questionnaredata');
 
     const data = await collection.find({}).toArray();
     res.status(200).json(data);

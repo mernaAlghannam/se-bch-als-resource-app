@@ -1,6 +1,6 @@
 // pages/api/saveData.js
 import nextConnect from 'next-connect';
-import client from '../../lib/mongodb';
+import client from '../../../src/lib/mongodb'
 
 async function saveData(req, res) {
   const { data } = req.body;
@@ -8,7 +8,7 @@ async function saveData(req, res) {
   try {
     await client.connect();
     const db = client.db(process.env.MONGODB_DB);
-    const collection = db.collection('yourCollectionName');
+    const collection = db.collection('questionnaredata');
 
     const result = await collection.insertOne(data);
     res.status(200).json({ message: 'Data saved successfully', id: result.insertedId });
