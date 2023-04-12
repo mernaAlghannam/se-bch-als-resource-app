@@ -8,6 +8,7 @@ import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
 import BodyButton from '../../components/MainBody/BodyButton';
 import saveDataToDb from '../../../code/src/utils/saveDataToDb';
+import SaveButton from '../../components/SaveButton/SaveButton';
 
 export const QuestionaireBodyContent: React.FC = () => {
   const { classes } = bodyContentUseStyles();
@@ -119,7 +120,8 @@ export const QuestionaireBodyContent: React.FC = () => {
   return (
     <div>
     <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
-    <button onClick={handleSaveClick}>Save</button>
+    {/* <button onClick={handleSaveClick}>Save</button> */}
+    <SaveButton onClick={handleSaveClick}/>
     {!hasSolution ? 
     <BodyButton currChoices={currChoices} currQuestion={currQuestion} handleClick={handleClick}/>
     : 
