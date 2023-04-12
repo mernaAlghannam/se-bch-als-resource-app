@@ -7,6 +7,7 @@ import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/
 import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
 import BodyButton from '../../components/MainBody/BodyButton';
+import saveDataToDb from '../../../code/src/utils/saveDataToDb';
 
 export const QuestionaireBodyContent: React.FC = () => {
   const { classes } = bodyContentUseStyles();
@@ -95,9 +96,30 @@ export const QuestionaireBodyContent: React.FC = () => {
       }
   };
 
+  const handleSaveClick = async () => {
+    const dataToSave = {
+      currQuestion,
+      currChoices,
+      clickedChoice,
+      solution,
+      hasSolution,
+      pageTitle,
+      image,
+      prevSelectedContent,
+    };
+  
+    try {
+      const result = await saveDataToDb(dataToSave);
+      console.log('Data saved:', result);
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
   return (
     <div>
     <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
+    <button onClick={handleSaveClick}>Save</button>
     {!hasSolution ? 
     <BodyButton currChoices={currChoices} currQuestion={currQuestion} handleClick={handleClick}/>
     : 
