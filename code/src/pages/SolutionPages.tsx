@@ -3,11 +3,11 @@ import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/
 import { Stack, Text} from '@mantine/core';
 import TestimonialsOrHandouts from '../../components/MainBody/SolutionPageContent/TestimonialOrHandouts';
 import Resources from '../../components/MainBody/SolutionPageContent/Resources';
-import Video from '../../components/MainBody/SolutionPageContent/Video';
 import { ISolution } from '@/types/api_types';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
 import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
-import VideoImageParaphsContent from '../../components/MainBody/SolutionPageContent/VideoImageParaphsContent';
+import PageContent from '../../components/MainBody/SolutionPageContent/PageContent';
+
 
 interface SolutionContentProps{
   solution: ISolution,
@@ -43,9 +43,8 @@ const SolutionPages: React.FC<SolutionContentProps> = ({solution, hasSolution}) 
               theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
           })}
         >
-          {/* <Video/> */}
           <Text className={classes.text}> {solution.title} </Text>
-          {!pageContent.length ? <></> : <VideoImageParaphsContent data={pageContent}/>}
+          {!pageContent.length ? <></> : <div> <PageContent data={pageContent}></PageContent></div>}
           {!resourceList.length ? <></>:<Resources data={resourceList}></Resources> }
           {!handoutTestimonialList.length ? <></>:<TestimonialsOrHandouts data={handoutTestimonialList}></TestimonialsOrHandouts> }
         </Stack>
