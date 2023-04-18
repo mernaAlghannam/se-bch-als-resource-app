@@ -7,6 +7,7 @@ import Video from '../../components/MainBody/SolutionPageContent/Video';
 import { ISolution } from '@/types/api_types';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
 import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
+import VideoImageParaphsContent from '../../components/MainBody/SolutionPageContent/VideoImageParaphsContent';
 
 interface SolutionContentProps{
   solution: ISolution,
@@ -42,9 +43,9 @@ const SolutionPages: React.FC<SolutionContentProps> = ({solution, hasSolution}) 
               theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
           })}
         >
-          <Video/>
+          {/* <Video/> */}
           <Text className={classes.text}> {solution.title} </Text>
-          {!pageContent.length ? <></> : <div> This is place holder content</div>}
+          {!pageContent.length ? <></> : <VideoImageParaphsContent data={pageContent}/>}
           {!resourceList.length ? <></>:<Resources data={resourceList}></Resources> }
           {!handoutTestimonialList.length ? <></>:<TestimonialsOrHandouts data={handoutTestimonialList}></TestimonialsOrHandouts> }
         </Stack>
