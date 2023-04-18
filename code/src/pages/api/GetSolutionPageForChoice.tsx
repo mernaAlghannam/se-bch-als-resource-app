@@ -51,7 +51,7 @@ function getPageContent(api_url: string, solution_json : any) : PageContentType[
   return temp_pageContentList
 }
 
-export default async function getSolutionContent(solutionId : string): Promise<[any[], any[], any[]]> {
+export async function getSolutionPageContentForChoice(solutionId : string): Promise<[any[], any[], any[]]> {
   let resourceList : ResourceLink[] = [];
   let handoutsOrTestimonialsList : HandoutOrTestimonialLink[] = [];
   let pageContentList : PageContentType[] = []

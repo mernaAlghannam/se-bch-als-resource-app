@@ -6,7 +6,7 @@ import Resources from '../../components/MainBody/SolutionPageContent/Resources';
 import Video from '../../components/MainBody/SolutionPageContent/Video';
 import { ISolution } from '@/types/api_types';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
-import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
+import {getSolutionPageContentForChoice} from './api/GetSolutionPageForChoice';
 
 interface SolutionContentProps{
   solution: ISolution,

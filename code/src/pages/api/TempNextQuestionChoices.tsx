@@ -8,7 +8,7 @@ const fetchAnyData = async (APIURL:string): Promise<any> => {
   return await res.json();
 }
 
-export default async function tempNextChoiceSelectionFromJson(clickedChoice : IChoice): Promise<[IQuestion, IChoice[], boolean, ISolution]> {
+export async function searchNextChoiceSelectionFromJson(clickedChoice : IChoice): Promise<[IQuestion, IChoice[], boolean, ISolution]> {
   const choice_selected_id = clickedChoice.id
   let choices_list : IChoice[] = []
   let question : IQuestion = {id:"", title:""}

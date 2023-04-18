@@ -2,7 +2,7 @@ import { Stack, Text} from '@mantine/core';
 import { useEffect, useState } from "react";
 import  Title from "../../components/Footer/Titles"
 import { IQuestion, IChoice , IBodyContent, ISolution} from '@/types/api_types';
-import search_questions_choices_from_json from './api/TempNextQuestionChoices';
+import {searchNextChoiceSelectionFromJson} from './api/TempNextQuestionChoices';
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
 import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
@@ -24,7 +24,7 @@ export const QuestionaireBodyContent: React.FC = () => {
   // do not know where to update button content
 
   const updateChoicesAndQuestions = async () => {
-    let [question, choices_list, hasSol, sol] = await search_questions_choices_from_json(clickedChoice)
+    let [question, choices_list, hasSol, sol] = await searchNextChoiceSelectionFromJson(clickedChoice)
     console.log(choices_list)
     setHasSolution(hasSol)
     if (hasSol){
