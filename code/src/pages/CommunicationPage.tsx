@@ -2,6 +2,7 @@ import React from 'react'
 import { FooterLinks } from "../../components/Footer/Footer"
 import Title from '../../components/Footer/Titles'
 // import { BodyContent } from '../../components/MainBody/BodyButton'
+
 import Nav from '../../components/Navbar/Nav'
 
 
