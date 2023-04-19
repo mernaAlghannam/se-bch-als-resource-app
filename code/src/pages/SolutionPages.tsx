@@ -6,6 +6,8 @@ import Resources from '../../components/MainBody/SolutionPageContent/Resources';
 import { ISolution } from '@/types/api_types';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
 import getSolutionPageContentForChoice from './api/GetSolutionPageForChoice';
+import PageContent from '../../components/MainBody/SolutionPageContent/PageContent';
+
 
 interface SolutionContentProps{
   solution: ISolution,
@@ -42,7 +44,7 @@ const SolutionPages: React.FC<SolutionContentProps> = ({solution, hasSolution}) 
           })}
         >
           <Text className={classes.text}> {solution.title} </Text>
-          {!pageContent.length ? <></> : <div> This is place holder content</div>}
+          {!pageContent.length ? <></> : <div> <PageContent data={pageContent}></PageContent></div>}
           {!resourceList.length ? <></>:<Resources data={resourceList}></Resources> }
           {!handoutTestimonialList.length ? <></>:<TestimonialsOrHandouts data={handoutTestimonialList}></TestimonialsOrHandouts> }
         </Stack>

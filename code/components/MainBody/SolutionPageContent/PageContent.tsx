@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, createStyles, rem , Text} from '@mantine/core';
+import { Stack, createStyles, rem , Text, AspectRatio} from '@mantine/core';
 import { PageContentType } from '@/types/dataTypes';
 
 
@@ -40,6 +40,20 @@ const useStyles = createStyles((theme) => ({
       width: '80%'
     },
   },
+  bodyText: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: '16px',
+    lineHeight: '150%',
+    /* or 18px */
+    color: '#74767B',
+    textAlign:'left',
+  },
+  video: {
+    align:'center',
+    size:10,
+  },
 
   outer: {
     paddingTop: rem(24),
@@ -60,7 +74,27 @@ const PageContent = ({data}: {data: PageContentType[]}) => {
     >
       <Text className={classes.text}> {"Resources"} </Text>
       {data.map((pageContent) => ( 
-        <></>
+        <>
+        <AspectRatio ratio={4/4} maw={2000} mah={500} className={classes.video}>
+            {/* <iframe
+                    src={pageContent.videoURL}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                /> */}
+              <video>
+                <source src={pageContent.videoURL} type="video/mp4"/>
+              </video>
+        </AspectRatio>
+        <Text className={classes.bodyText}>
+            {pageContent.paragraph}
+        </Text>
+        <AspectRatio ratio={4/4} maw={2000} mah={500} className={classes.video}>
+            <iframe
+                    src={pageContent.imageURL}
+                />
+        </AspectRatio>
+        </>
       ))}
     </Stack>
     </div> 
