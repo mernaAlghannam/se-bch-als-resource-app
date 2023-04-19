@@ -7,7 +7,7 @@ import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/
 import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
 
-export const QuestionaireBodyContent: React.FC = () => {
+export const QuestionaireBodyContent: React.FC = () : any => {
   const { classes } = bodyContentUseStyles();
 
   let [currQuestion, setCurrQuestion] = useState<IQuestion>({id: "", title:""});
@@ -93,39 +93,39 @@ export const QuestionaireBodyContent: React.FC = () => {
       prevSelectedContent,
     };
   
-    try {
-      const result = await saveDataToDb(dataToSave);
-      console.log('Data saved:', result);
-    } catch (error) {
-      console.error('Error saving data:', error);
-    }
+  //   try {
+  //     const result = await saveDataToDb(dataToSave);
+  //     console.log('Data saved:', result);
+  //   } catch (error) {
+  //     console.error('Error saving data:', error);
+  //   }
+  // };
+
+    return (
+      <div>
+      <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
+      {/* <button onClick={handleSaveClick}>Save</button> */}
+      {/* <SaveButton onClick={handleSaveClick}/> */}
+      {!hasSolution ? 
+      <Stack
+        spacing="xl"
+        className={classes.outer}
+        sx={(theme) => ({
+          backgroundColor:
+            theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+        })}
+      >
+        <Text className={classes.text}> {currQuestion.title} </Text>
+        {currChoices.map((choice) => (  
+          <div key={choice.id}>
+          <ToggleButton setClickedChoice={setClickedChoice} className={classes.inner} choice={choice} />
+          </div>
+        ))} 
+      </Stack>
+      : 
+      <SolutionPages solution={solution} hasSolution={hasSolution}/>
+      }
+      </div>
+    );
   };
-
-  return (
-    <div>
-    <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
-    {/* <button onClick={handleSaveClick}>Save</button> */}
-    <SaveButton onClick={handleSaveClick}/>
-    {!hasSolution ? 
-    <Stack
-      spacing="xl"
-      className={classes.outer}
-      sx={(theme) => ({
-        backgroundColor:
-          theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-      })}
-    >
-      <Text className={classes.text}> {currQuestion.title} </Text>
-      {currChoices.map((choice) => (  
-        <div key={choice.id}>
-        <ToggleButton setClickedChoice={setClickedChoice} className={classes.inner} choice={choice} />
-        </div>
-      ))} 
-    </Stack>
-    : 
-    <SolutionPages solution={solution} hasSolution={hasSolution}/>
-    }
-    </div>
-  );
-};
-
+}
