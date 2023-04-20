@@ -69,3 +69,31 @@ DOCUMENTATION:
                 * This function fetches data from the API based on the input `clickedChoice` object and processes the data to return the required information about the next question, its choices, and any solution associated with the input choice. 
                 
                 * If the input choice does not have a next question or solution, the function returns an empty question, an empty array of choices, and a boolean value set to false.
+
+    * pages/_app.tsx
+        * App(props: AppProps)
+            * This is the main wrapper component for the Next.js application. It includes the Head component for metadata, MantineProvider for global styles and theme overrides, Nav component for navigation, and FooterLinks component for the footer.
+    * pages/_document.tsx
+        * _Document extends Document
+            * This custom Document component is used to augment the default Next.js HTML structure. It includes the Head, Main, and NextScript components.
+    * pages/account.tsx
+        * AccountPage()
+            * This is the AccountPage component that renders the "Save Page" text.
+    * pages/communication.tsx
+        * CommunicationPage()
+            * This is the CommunicationPage component that includes the Nav, Title, and FooterLinks components. The Title component renders the title "Communication" along with a related image.
+    * pages/final.tsx
+        * FinalPage()
+            * This is the FinalPage component that includes the Nav, Resources, and FooterLinks components. The Resources component renders a list of resource links based on the `dummyResourceLinks` data.
+    * pages/index.tsx
+        * Home()
+            * This is the Home component that renders the QuestionairePage.
+    * pages/QuestionaireBodyContentPages.tsx
+        * QuestionaireBodyContent()
+            * This component handles the questionnaire logic, rendering a series of questions and choices. It also handles navigation between questions and displaying the solution page when a solution is reached.
+    * pages/SolutionPages.tsx
+        * SolutionPages({solution, hasSolution}: SolutionContentProps)
+            * This component renders the content of a solution page, which includes the solution title, page content, resources, and handouts or testimonials. It fetches and displays content based on the solution ID.
+    * pages/QuestionairePage.tsx
+        * QuestionairePage()
+            * This is the QuestionairePage component that wraps and renders the QuestionaireBodyContent component.
