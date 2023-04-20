@@ -13,12 +13,6 @@ const useStyles = createStyles((theme) => ({
     color: '#74767B',
     textAlign:'left',
   },
-  outer: {
-    paddingTop: rem(24),
-    // pddingBottom: rem(24),
-    // paddingLeft: '10%',
-    // paddingRight: '10%'
-  },
 }))
 
 const paragraph = "This part is reserved for the brief description of the solution above. Placeholder texts are used for now.  Lorem ipsum dolor sit amet consectetur. Urna placerat a amet.Lorem ipsum dolor sit amet consectetur. Urna placerat a amet.Lorem ipsum dolor sit amet consectetur. Urna placerat a amet."
@@ -30,7 +24,7 @@ const Paragraph = ({paragraph}:{paragraph: string}) => {
     <div>
       <Stack
       spacing="xl"
-      className={classes.outer}
+      // className={classes.outer}
       sx={(theme) => ({
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
       })}>

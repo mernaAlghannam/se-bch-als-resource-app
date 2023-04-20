@@ -4,7 +4,7 @@ export const bodyContentUseStyles = createStyles((theme) => ({
   inner: {
     height: '57px',
     display: 'flex',
-    width: '87%',
+    width: '100%',
     // backgroundColor: 'transparent',
     color: '#254885',
     border: '2px solid #254885',
@@ -23,7 +23,7 @@ export const bodyContentUseStyles = createStyles((theme) => ({
       height: '57px',
       display: 'flex',
       // textAlign: 'center',
-      width: '87%',
+      width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
       alignContent: 'center',
@@ -59,8 +59,9 @@ export const bodyContentUseStyles = createStyles((theme) => ({
   },
 
   outer: {
-    paddingTop: rem(24),
-    pddingBottom: rem(24),
+    // paddingTop: rem(24),
+    // pddingBottom: rem(24),
     paddingLeft: '10%',
+    paddingRight: '10%'
   },
 }));
