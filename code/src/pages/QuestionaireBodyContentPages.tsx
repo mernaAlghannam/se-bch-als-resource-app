@@ -7,10 +7,12 @@ import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/
 import ToggleButton from '../../components/MainBody/TogglebButton';
 import SolutionPages from './SolutionPages';
 
+let prevSelectedContent : IBodyContent[] = []
+
 export const QuestionaireBodyContent: React.FC = () => {
   const { classes } = bodyContentUseStyles();
 
-  let [currQuestion, setCurrQuestion] = useState<IQuestion>({id: "", title:""});
+  let [currQuestion, setCurrQuestion] = useState<IQuestion>({id: "2", title:"How can I assist you?"});
   let [currChoices, setCurChoices] = useState<IChoice[] >([])
   let [clickedChoice, setClickedChoice] = useState<IChoice>({id:"1", title:"Home"})
   let [solution, setSolution] = useState<ISolution>({id:"", title:""})
@@ -19,33 +21,33 @@ export const QuestionaireBodyContent: React.FC = () => {
 
   let [pageTitle, setPageTitle] = useState("Home")
   let [image, setImage] = useState("/titleimghome.PNG")
-  let [prevSelectedContent, setPrevSelectedContent] = useState< IBodyContent[]>([])
+  // let [prevSelectedContent, setPrevSelectedContent] = useState< IBodyContent[]>([])
+  // let prevSelectedContent : IBodyContent[] = []
 
   // do not know where to update button content
 
-  const updateChoicesAndQuestions = async () => {
-    let [question, choices_list, hasSol, sol] = await search_questions_choices_from_json(clickedChoice)
+  const updateChoicesAndQuestions = async (choice : IChoice) => {
+    let [question, choices_list, hasSol, sol] = await search_questions_choices_from_json(choice)
     console.log(choices_list)
     setHasSolution(hasSol)
     if (hasSol){
       setSolution(sol)
     }else{
       setSolution({id:"", title:""})
+      setClickedChoice(choice)
     }
     console.log(hasSol)
     if (question.title != ''){
-      setPrevSelectedContent(prevSelectedContent.concat({question: currQuestion, prevChoice: clickedChoice, choiceList:  currChoices}))
+      prevSelectedContent.push({question: currQuestion, prevChoice: clickedChoice, choiceList:  currChoices})
       setCurChoices(choices_list)
       setCurrQuestion(question)
     }
 
-    if(clickedChoice.title == "Communication"){
+    if(choice.title == "Communication"){
       setPageTitle("Communication")
       setImage("/commImg.PNG")
-    } else if (prevSelectedContent.length < 2){
-      setPageTitle("Home")
-      setImage("/titleimghome.PNG")
-    }
+    } 
+    
 
     console.log("updateq"+prevSelectedContent.length)
     for (const element of prevSelectedContent) {
@@ -56,26 +58,31 @@ export const QuestionaireBodyContent: React.FC = () => {
   useEffect(() => {
     console.log(clickedChoice)
     if (clickedChoice != null){
-      updateChoicesAndQuestions()
+      updateChoicesAndQuestions(clickedChoice)
     }
-  }, [clickedChoice])
+  }, [])
 
 
   const hasPrev = () => {
     console.log("checking"+prevSelectedContent.length)
-    return prevSelectedContent.length > 1;
+    return prevSelectedContent.length > 2;
   };
 
   const prevQuestion = () => {
-      if (prevSelectedContent.length > 1) {
-          let i = 2
+      if (prevSelectedContent.length > 2) {
+          let i = 1
         if (hasSolution){
-          i=1
+          console.log(clickedChoice)
+          updateChoicesAndQuestions(clickedChoice)
         }
         setCurrQuestion(prevSelectedContent[prevSelectedContent.length-i].question);
-        setClickedChoice(prevSelectedContent[prevSelectedContent.length-i].prevChoice);
+        setClickedChoice(prevSelectedContent[prevSelectedContent.length-i].prevChoice)
         setCurChoices(prevSelectedContent[prevSelectedContent.length-i].choiceList)
-        setPrevSelectedContent(prevSelectedContent.slice(0, -i))
+        prevSelectedContent.pop()
+        if (prevSelectedContent.length < 3){
+          setPageTitle("Home")
+          setImage("/titleimghome.PNG")
+        }
         console.log("its length"+prevSelectedContent.length)
         console.log("hassol"+hasSolution)
       }
@@ -96,7 +103,7 @@ export const QuestionaireBodyContent: React.FC = () => {
       <Text className={classes.text}> {currQuestion.title} </Text>
       {currChoices.map((choice) => (  
         <div key={choice.id}>
-        <ToggleButton setClickedChoice={setClickedChoice} className={classes.inner} choice={choice} />
+        <ToggleButton updateContent={updateChoicesAndQuestions} className={classes.inner} choice={choice} />
         </div>
       ))} 
     </Stack>
