@@ -113,31 +113,3 @@ export const QuestionaireBodyContent: React.FC = () => {
     </div>
   );
 };
-
-    return (
-      <div>
-      <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
-      {/* <button onClick={handleSaveClick}>Save</button> */}
-      {/* <SaveButton onClick={handleSaveClick}/> */}
-      {!hasSolution ? 
-      <Stack
-        spacing="xl"
-        className={classes.outer}
-        sx={(theme) => ({
-          backgroundColor:
-            theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-        })}
-      >
-        <Text className={classes.text}> {currQuestion.title} </Text>
-        {currChoices.map((choice) => (  
-          <div key={choice.id}>
-          <ToggleButton setClickedChoice={setClickedChoice} className={classes.inner} choice={choice} />
-          </div>
-        ))} 
-      </Stack>
-      : 
-      <SolutionPages solution={solution} hasSolution={hasSolution}/>
-      }
-      </div>
-    );
-  };
