@@ -1,4 +1,6 @@
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from "@/types/dataTypes";
+import { API_URL } from '@/constants/globals';
+
 
 const fetchAnyData = async (APIURL:string): Promise<any> => {
   const res = await fetch(APIURL, {
@@ -55,15 +57,14 @@ export default async function getSolutionContent(solutionId : string): Promise<[
   let resourceList : ResourceLink[] = [];
   let handoutsOrTestimonialsList : HandoutOrTestimonialLink[] = [];
   let pageContentList : PageContentType[] = []
-  const api_url = "http://localhost:1338"
 
-  const solution_json = await fetchAnyData("http://localhost:1338/api/solutions/"+solutionId+"?populate=deep,3")
+  const solution_json = await fetchAnyData(API_URL+"/api/solutions/"+solutionId+"?populate=deep,3")
 
-  handoutsOrTestimonialsList = getTestimonialOrHandoutContent(api_url, solution_json)
+  handoutsOrTestimonialsList = getTestimonialOrHandoutContent(API_URL, solution_json)
 
   resourceList = getResourceContent(solution_json)
 
-  pageContentList = getPageContent(api_url, solution_json)
+  pageContentList = getPageContent(API_URL, solution_json)
 
   return [resourceList, handoutsOrTestimonialsList, pageContentList]
 }
