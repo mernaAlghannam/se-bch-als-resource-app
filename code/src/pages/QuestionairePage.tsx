@@ -4,7 +4,10 @@ import {QuestionaireBodyContent} from './QuestionaireBodyContentPages'
 const QuestionairePage = () => {
   return (
     <div>
-      <QuestionaireBodyContent></QuestionaireBodyContent>
+      <QuestionaireBodyContent ></QuestionaireBodyContent>
+      {/* FOR TESTSING PURPOSES, UNCOMMENT
+       <QuestionaireBodyContent data-testid="questionaire-body-content" /> 
+      */}
     </div>
   )
 }
