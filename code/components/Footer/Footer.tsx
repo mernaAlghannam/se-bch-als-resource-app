@@ -224,3 +224,4 @@ export function FooterLinks({ data }: FooterLinksProps) {
     </footer>
   );
 }
+}
