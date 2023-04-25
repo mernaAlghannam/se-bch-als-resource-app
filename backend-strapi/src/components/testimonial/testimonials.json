@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_testimonial_testimonials",
+  "info": {
+    "displayName": "Testimonials",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "TestimonialOrHandoutTitle": {
+      "type": "string"
+    },
+    "TestimonialOrHandoutLink": {
+      "type": "string"
+    },
+    "TestimonialOrHandoutPDF": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

@@ -1,29 +1,3 @@
-// import React from 'react'
-// // import Body from 'next/body';
-// import { BackgroundImage, Image, Center, Text, Box } from '@mantine/core';
-
-// const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
-//   return (
-//         <Box maw={300} mx="auto">
-//       <BackgroundImage
-//         src={titleImg}
-//         radius="xs"
-//       ></BackgroundImage>
-//       {/* <Image radius="xs" src={titleImg} alt="Random image" /> */}
-//       <Center p="md">
-//           <Text color="#fff">
-//           {title}
-//           </Text>
-//         </Center>
-//       </Box>
-//   )
-// }
-
-//links: https://ui.mantine.dev/category/hero
-//
-
-// export default Titles
-
 import { Title, createStyles, rem } from '@mantine/core';
 import React from 'react'
 

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_description_paragraphs_description_paragraphs",
+  "info": {
+    "displayName": "DescriptionParagraphs"
+  },
+  "options": {},
+  "attributes": {
+    "DescriptionParagraph": {
+      "type": "richtext"
+    }
+  }
+}

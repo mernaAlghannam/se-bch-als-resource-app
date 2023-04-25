@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "first_entries",
+  "info": {
+    "singularName": "first-entry",
+    "pluralName": "first-entries",
+    "displayName": "FirstEntry"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "question_to_choice_maps": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-to-choice-map.question-to-choice-map",
+      "mappedBy": "first_entry"
+    }
+  }
+}

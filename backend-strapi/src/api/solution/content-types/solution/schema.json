@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "solutions",
+  "info": {
+    "singularName": "solution",
+    "pluralName": "solutions",
+    "displayName": "Solution",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "PreviousChoiceConnected": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::choice-to-question-map.choice-to-question-map",
+      "mappedBy": "ChoiceToSolutionMap"
+    },
+    "Resources": {
+      "type": "component",
+      "repeatable": true,
+      "component": "resources.resource-link"
+    },
+    "Block": {
+      "type": "dynamiczone",
+      "components": [
+        "image.image",
+        "video.video",
+        "description-paragraphs.description-paragraphs"
+      ]
+    },
+    "TestimonialsOrHandouts": {
+      "type": "dynamiczone",
+      "components": [
+        "testimonial-handout-link.link-content",
+        "testimonial-handout-pdf.pdf-content"
+      ]
+    }
+  }
+}

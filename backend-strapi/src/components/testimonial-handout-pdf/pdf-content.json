@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_testimonial_handout_pdf_pdf_contents",
+  "info": {
+    "displayName": "PDFContent"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "PDF": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
