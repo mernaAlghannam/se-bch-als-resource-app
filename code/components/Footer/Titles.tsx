@@ -1,12 +1,27 @@
-import { Title, createStyles, rem } from '@mantine/core';
-import React from 'react'
+import {
+  Title,
+  createStyles,
+  rem
+} from '@mantine/core';
+import { IconChevronLeft} from '@tabler/icons-react';
+
 
 let img = ""
-const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
+const Titles = ({hasPrev, prevQuestion, titleImg, title}:{hasPrev: boolean, prevQuestion: () => any, titleImg: string, title: string}) => {
   img = titleImg
   const { classes} = useStyles();
+  const ChevronIcon = IconChevronLeft;
+
   return (
     <div className={classes.wrapper}>
+        {hasPrev ? (
+        <ChevronIcon
+        className={classes.chevron}
+        size="2.5rem"
+        stroke={2.5}
+        onClick={prevQuestion}
+      />) : null}
+      
       <div className={classes.inner}>
         <Title className={classes.title}>
           {title}
@@ -19,14 +34,22 @@ const Titles = ({titleImg, title}:{titleImg: string, title: string}) => {
 export default Titles;
 
 const useStyles = createStyles((theme) => ({
+
+  chevron: {
+    transition: 'transform 200ms ease',
+    position: "absolute", 
+    left: "2.02%", 
+    top: "15.36%", 
+    color: "#FFFFFF"
+  },
   wrapper: {
     position: 'relative',
-    paddingTop: rem(180),
-    paddingBottom: rem(130),
+    paddingTop: rem(10),
+    paddingBottom: rem(100),
     backgroundImage: 'linear-gradient(0deg, rgba(0, 48, 135, 0.5), rgba(0, 48, 135, 0.5)), url('+img+')',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: rem(242),
+    height: rem(203),
 
     [theme.fn.smallerThan('xs')]: {
       paddingTop: rem(80),
@@ -36,7 +59,7 @@ const useStyles = createStyles((theme) => ({
   inner: {
     position: 'absolute',
     width: rem(132),
-    height: rem(51),
+    height: rem(41),
     left: rem(24),
     bottom: rem(24),
     // top: rem(130),
@@ -45,10 +68,10 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontWeight: 600,
-    fontSize: rem(42),
+    fontSize: rem(35),
     fontStyle: 'normal',
     letterSpacing: rem(-1),
-    paddingLeft: theme.spacing.xs,
+    // paddingLeft: theme.spacing.xs,
     paddingRight: theme.spacing.xs,
     color: theme.white,
     marginBottom: theme.spacing.xs,
@@ -57,10 +80,9 @@ const useStyles = createStyles((theme) => ({
     lineHeight: rem(51),
 
     [theme.fn.smallerThan('xs')]: {
-      fontSize: rem(42),
+      fontSize: rem(35),
       textAlign: 'left',
     },
   },
 
 }));
-
