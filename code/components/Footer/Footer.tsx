@@ -1,6 +1,9 @@
 import { createStyles, Text, Container, rem } from '@mantine/core';
 import Image from 'next/image'
 import image12 from '../../src/styles/image12.png'
+import { FooterLink } from '@/types/dataTypes';
+import { useState } from 'react';
+import { footerLinkData } from '@/constants/footerLinkData';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -77,17 +80,12 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface FooterLinksProps {
-  data: {
-    links: { label: string; link: string }[];
-  }[];
-}
 
-export function FooterLinks({ data }: FooterLinksProps) {
+
+export function FooterLinks() {
   const { classes } = useStyles();
 
-  const groups = data.map((group) => {
-    const links = group.links.map((link, index) => (
+    const links = footerLinkData.map((link, index) => (
       <Text<"a">
         key={link.link}
         className={classes.link}
@@ -102,13 +100,6 @@ export function FooterLinks({ data }: FooterLinksProps) {
       </Text>
     ));
 
-    return (
-      <div key={0} className={classes.wrapper}>
-        {links}
-      </div>
-    );
-  });
-  console.log(groups)
 
   return (
     <footer className={classes.footer}>
@@ -119,7 +110,11 @@ export function FooterLinks({ data }: FooterLinksProps) {
           {/* slightly bigger image, could fit better on desktop site */}
           {/* <Image alt='Best hospitals logo' src={image12} size={20}/> */}
         </div>
-        <div className={classes.groups}>{groups}</div>
+        <div className={classes.groups}>
+          <div key={0} className={classes.wrapper}>
+            {links}
+          </div>
+        </div>
       </Container>
     </footer>
   );
