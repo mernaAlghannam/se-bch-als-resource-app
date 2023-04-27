@@ -90,7 +90,7 @@ export const QuestionaireBodyContent: React.FC = () => {
 
   return (
     <div>
-    <Title hasPrev={hasPrev()} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
+    <Title hasPrev={(prevSelectedContent.length > 2)} prevQuestion={prevQuestion} titleImg={image} title={pageTitle} />
     {!hasSolution ? 
     <Stack
       spacing="xl"

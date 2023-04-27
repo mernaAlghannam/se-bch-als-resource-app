@@ -6,7 +6,6 @@ import Link from 'next/link'
 const useStyles = createStyles((theme) => ({
   footer: {
     position: 'absolute',
-    // display:'flex',
     width: '100%',
     left:0,
     bottom:0, 
