@@ -1,21 +1,18 @@
 import { createStyles, Text, Container, rem } from '@mantine/core';
 import Image from 'next/image'
 import image12 from '../../src/styles/image12.png'
-import { FooterLink } from '@/types/dataTypes';
-import { useState } from 'react';
-import { footerLinkData } from '@/constants/footerLinkData';
+import Link from 'next/link'
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    // position: 'absolute',
-    display: 'flex',
-    justifyContent: 'center',
-    bottom: rem(0), 
-    // height: rem(200),
+    position: 'absolute',
     width: '100%',
-    marginTop: rem(30),
-    paddingTop: `10px`,
-    paddingBottom: `calc(${theme.spacing.xl})`,
+    left:0,
+    bottom:0, 
+    marginTop: rem(120),
+    margainbottom: rem(0),
+    paddingTop: `calc(${theme.spacing.xl} * 2)`,
+    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
     backgroundColor: '#254885',
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
@@ -25,32 +22,30 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     maxWidth: rem(200),
+
     paddingRight: `20px`,
     paddingTop: rem(20),
 
+      position: 'relative',
+      padding: rem(20),
+
+      paddingTop: rem(20),
+
     [theme.fn.smallerThan('sm')]: {
-      display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      paddingTop: rem(20),
-    },
-  },
-
-  inner: {
-    display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'start',
 
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'start',
-    },
-  },
 
-  groups: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    paddingLeft: rem(40),
+
+    [theme.fn.smallerThan('sm')]: {
+      //if uncommented, this will hide the footer links on mobile
+      //display: 'none',
     width: rem(230),
 
     [theme.fn.smallerThan('sm')]: {
@@ -71,6 +66,9 @@ const useStyles = createStyles((theme) => ({
     fontWeight:400,
     fontSize: '12px',
     lineHeight:'15px',
+    paddingTop: rem(3),
+    paddingBottom: rem(3),
+    textDecoration: 'none',
     paddingTop: rem(20),
     paddingBottom: rem(3),
 
@@ -80,6 +78,30 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+interface FooterLinksProps {
+  data: {
+    links: { label: string; link: string }[];
+  }[];
+}
+
+export function FooterLinks({ data }: FooterLinksProps) {
+  const { classes } = useStyles();
+
+  const groups = data.map((group) => {
+    const links = group.links.map((link, index) => (
+      <Link href={link.link} className={classes.link} key={index}>
+        {/* onClick={(event) => event.preventDefault()} */}
+        {link.label}
+      </Link>
+    ));
+
+    return (
+      <div className={classes.wrapper}>
+        {links}
+      </div>
+    );
+  });
+  //console.log(groups)
 
 
 export function FooterLinks() {
