@@ -25,7 +25,7 @@ const SolutionPages = () => {
   const getSolutionPageContent = async (solutionId: string) => {
     let [title, resource_list, handouts_testimonials_list, page_content] = await getSolutionPageContentForChoice(solutionId)
     // TODO:
-    // get the category based on the questionId
+    // get the category based on the solutionId
     // setCategory()
     setCategory("Communication")
     setSolutionTitle(title)
