@@ -50,7 +50,7 @@ const SolutionPages = () => {
   return (
     <div>
       <Nav></Nav>
-      <Title hasPrev={true} router={router} titleImg={"/titleimghome.PNG"} title={category} />
+      <Title hasPrev={true} router={router} titleImg={`/titleImg${category}.png`} title={category} />
       <Stack
         spacing="xl"
         className={classes.outer}
