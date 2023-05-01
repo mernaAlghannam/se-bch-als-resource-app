@@ -1,21 +1,20 @@
 import { createStyles, Text, Container, rem } from '@mantine/core';
 import Image from 'next/image'
 import image12 from '../../src/styles/image12.png'
-import { FooterLink } from '@/types/dataTypes';
-import { useState } from 'react';
+import Link from 'next/link'
 import { footerLinkData } from '@/constants/footerLinkData';
 
 const useStyles = createStyles((theme) => ({
   footer: {
     // position: 'absolute',
-    display: 'flex',
-    justifyContent: 'center',
-    bottom: rem(0), 
-    // height: rem(200),
+    // display:'flex',
     width: '100%',
-    marginTop: rem(30),
-    paddingTop: `10px`,
-    paddingBottom: `calc(${theme.spacing.xl})`,
+    left:0,
+    bottom:0, 
+    marginTop: rem(120),
+    margainbottom: rem(0),
+    paddingTop: `calc(${theme.spacing.xl} * 2)`,
+    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
     backgroundColor: '#254885',
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
@@ -25,37 +24,35 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     maxWidth: rem(200),
-    paddingRight: `20px`,
-    paddingTop: rem(20),
+    alignItems: 'right',
 
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      paddingTop: rem(20),
+      position: 'relative',
+      padding: rem(20),
     },
   },
 
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'start',
 
     [theme.fn.smallerThan('sm')]: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'start',
+      flexDirection: 'column',
+      alignItems: 'center',
     },
   },
 
   groups: {
     display: 'flex',
     flexWrap: 'wrap',
-    width: rem(230),
+    paddingLeft: rem(40),
 
     [theme.fn.smallerThan('sm')]: {
-      display: 'flex',
-      flexWrap: 'wrap',
+      //if uncommented, this will hide the footer links on mobile
+      //display: 'none',
     },
   },
 
@@ -71,8 +68,9 @@ const useStyles = createStyles((theme) => ({
     fontWeight:400,
     fontSize: '12px',
     lineHeight:'15px',
-    paddingTop: rem(20),
+    paddingTop: rem(3),
     paddingBottom: rem(3),
+    textDecoration: 'none',
 
     '&:hover': {
       textDecoration: 'underline',
@@ -80,24 +78,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-
-
 export function FooterLinks() {
   const { classes } = useStyles();
 
     const links = footerLinkData.map((link, index) => (
-      <Text<"a">
-        key={link.link}
-        className={classes.link}
-        component="a"
-        href={link.link}
-        target="_blank"
-        fz = "sm"
-        
-        // onClick={(event) => event.preventDefault()}
-      >
+      <Link href={link.link} className={classes.link} key={index} target='_blank'>
         {link.label}
-      </Text>
+      </Link>
     ));
 
 
