@@ -53,12 +53,14 @@ function getPageContent(api_url: string, solution_json : any) : PageContentType[
   return temp_pageContentList
 }
 
-export default async function getSolutionContent(solutionId : string): Promise<[any[], any[], any[]]> {
+export default async function getSolutionContent(solutionId : string): Promise<[string, any[], any[], any[]]> {
   let resourceList : ResourceLink[] = [];
   let handoutsOrTestimonialsList : HandoutOrTestimonialLink[] = [];
   let pageContentList : PageContentType[] = []
 
   const solution_json = await fetchAnyData(API_URL+"/api/solutions/"+solutionId+"?populate=deep,3")
+
+  const title = solution_json.data.attributes.Title
 
   handoutsOrTestimonialsList = getTestimonialOrHandoutContent(API_URL, solution_json)
 
@@ -66,5 +68,5 @@ export default async function getSolutionContent(solutionId : string): Promise<[
 
   pageContentList = getPageContent(API_URL, solution_json)
 
-  return [resourceList, handoutsOrTestimonialsList, pageContentList]
+  return [title, resourceList, handoutsOrTestimonialsList, pageContentList]
 }

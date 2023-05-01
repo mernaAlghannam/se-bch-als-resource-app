@@ -17,16 +17,15 @@ const Questionnaire = () => {
     
     let [question, setQuestion] = useState<IQuestion>({id: "", title:""})
     let [currChoices, setCurChoices] = useState<IChoice[] >([])
-    let [nextQuestions, setNextQuestions] = useState<IQuestion[]>([])
-
+    let [nextQuestionOrSolutions, setNextQuestionOrSolutions] = useState<{question: IQuestion, solution: ISolution}[]>([])
 
     const getData = async(questionId: string) => {
         const {question, choices} = await getQuestionNChoices(questionId)
         setQuestion(question)
         setCurChoices(choices)
         for (var choice of choices) {
-            const _question = await getNextQuestion(choice.id)
-            setNextQuestions(current => [...current, _question])
+            const {nextQuestion, solution}  = await getNextQuestion(choice.id)
+            setNextQuestionOrSolutions(current => [...current, {question: nextQuestion, solution: solution}])
         }
     }
     
@@ -34,7 +33,7 @@ const Questionnaire = () => {
     useEffect(() => {
         const { id } = router.query
         if (id) {
-            setNextQuestions([])
+            setNextQuestionOrSolutions([])
             console.log(id)
             getData(id as string)
         }
@@ -55,22 +54,27 @@ const Questionnaire = () => {
             })}
         >
             <Text className={classes.text}> {question.title} </Text>
-            {question.id == "2" && nextQuestions.length == currChoices.length*2?
+            {nextQuestionOrSolutions.length > currChoices.length && nextQuestionOrSolutions.length == currChoices.length*2?
             currChoices.map((choice, index) => (  
                 <div key={choice.id}>
-                    {nextQuestions[index*2].id == ""?
+                    {nextQuestionOrSolutions[index*2].question.id == ""?
                         <ToggleButton title={choice.title} />:
-                        <Link href={`/question/${nextQuestions[index*2].id}`}>
+                        <Link href={`/question/${nextQuestionOrSolutions[index*2].question.id}`}>
                             <ToggleButton title={choice.title} />
                         </Link>
                     }
                 </div>)):
-            nextQuestions.length == currChoices.length?
+            nextQuestionOrSolutions.length == currChoices.length?
             currChoices.map((choice, index) => (  
                 <div key={choice.id}>
-                    {nextQuestions[index].id == ""?
+                    {nextQuestionOrSolutions[index].solution.id != ""? // next page is solution
+                        <Link href={`/solution/${nextQuestionOrSolutions[index].solution.id}`}>
+                            <ToggleButton title={choice.title} />
+                        </Link>
+                    :
+                    nextQuestionOrSolutions[index].question.id == ""?  // next page is question
                         <ToggleButton title={choice.title} />:
-                        <Link href={`/question/${nextQuestions[index].id}`}>
+                        <Link href={`/question/${nextQuestionOrSolutions[index].question.id}`}>
                             <ToggleButton title={choice.title} />
                         </Link>
                     }

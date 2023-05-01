@@ -59,12 +59,18 @@ export const getNextQuestion = async(choiceId: string) => {
     const question_json = await fetchAnyData(API_URL+"/api/choice-to-question-maps/"+choiceId+"?populate=*")
     
     if (question_json.data.attributes.choice_to_question.data == null){
-        return nextQuestion
+        if (question_json.data.attributes.ChoiceToSolutionMap.data != null){
+            solution = {
+                id: question_json.data.attributes.ChoiceToSolutionMap.data.id, 
+                title: question_json.data.attributes.ChoiceToSolutionMap.data.attributes.Title
+            }
+          }        
+        return {nextQuestion: nextQuestion, solution: solution}
     }
     
     nextQuestion = {
         id: question_json.data.attributes.choice_to_question.data.id,
         title: question_json.data.attributes.choice_to_question.data.attributes.QuestionName
     }
-    return nextQuestion
+    return {nextQuestion: nextQuestion, solution: solution}
 }

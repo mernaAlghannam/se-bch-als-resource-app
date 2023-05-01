@@ -23,8 +23,8 @@ const HomePage = () => {
     const choices = await getChoices(questionId)
     setCurChoices(choices)
     for (var choice of choices) {
-      const question = await getNextQuestion(choice.id)
-      setNextQuestions(current => [...current, question])
+      const {nextQuestion} = await getNextQuestion(choice.id)
+      setNextQuestions(current => [...current, nextQuestion])
     }
   }
 
