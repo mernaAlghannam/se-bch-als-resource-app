@@ -15,3 +15,8 @@ export type PageContentType = {
   imageURL: string;
   videoURL: string;
 }
+
+export type FooterLink = {
+  label: string;
+  link: string;
+}
