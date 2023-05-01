@@ -1,24 +1,21 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React from 'react';
 import {Button, rem, Text} from '@mantine/core';
-import { IChoice } from '@/types/api_types';
+import { bodyContentUseStyles } from './HelperFunctions/BodyContentStyle';
+
 
 interface ToggleButtonProps{
-    updateContent: (choice: IChoice) => {},
-    choice: IChoice;
-    className: string;
+    title: string
 }
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({updateContent, choice, className}) => {
+const ToggleButton: React.FC<ToggleButtonProps> = ({title}) => {
+    const { classes } = bodyContentUseStyles();
 
     return(
-        <Button key={choice.id}
-            className={className}
+        <Button key={"Toogle Button"}
+            className={classes.inner}
             variant="outline"
-            onClick = {() => {updateContent(choice)}}
-            >
-              {/* <Link href={"/"+choice}> */}
-              <Text fz = "xl" style={{fontSize: rem(16), whiteSpace: "normal", textAlign: 'center'}}>{choice.title}</Text>
-              {/* </Link> */}
+        >
+            <Text fz = "xl" style={{fontSize: rem(16), whiteSpace: "normal", textAlign: 'center'}}>{title}</Text>
         </Button>
     )
 }
