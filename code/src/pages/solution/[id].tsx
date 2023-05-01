@@ -8,6 +8,7 @@ import PageContent from '../../components/MainBody/SolutionPageContent/PageConte
 import { useRouter } from 'next/router';
 import Nav from '../../components/Navbar/Nav';
 import Title from '../../components/Title/Titles'
+import { FooterLinks } from '@/components/Footer/Footer';
 
 
 
@@ -64,6 +65,7 @@ const SolutionPages = () => {
       {!resourceList.length ? <></>:<ResourcesHandouts title= {"Resources"} data={resourceList}></ResourcesHandouts> }
       {!handoutTestimonialList.length ? <></>:<ResourcesHandouts title={"Handouts/Testimonials"} data={handoutTestimonialList}></ResourcesHandouts> }
       </Stack>
+      <FooterLinks />
     </div>
   )
 }
