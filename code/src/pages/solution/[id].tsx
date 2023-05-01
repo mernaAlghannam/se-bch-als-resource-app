@@ -16,6 +16,7 @@ const SolutionPages = () => {
   const { classes } = bodyContentUseStyles();
   const router = useRouter();
 
+  let [category, setCategory] = useState<string>("Home")
   let [solutionTitle, setSolutionTitle] = useState<string>("")
   let [resourceList, setResourceList] = useState<ResourceLink[]>([])
   let [handoutTestimonialList, setHandoutTestimonialList] = useState<HandoutOrTestimonialLink[]>([])
@@ -23,6 +24,10 @@ const SolutionPages = () => {
 
   const getSolutionPageContent = async (solutionId: string) => {
     let [title, resource_list, handouts_testimonials_list, page_content] = await getSolutionPageContentForChoice(solutionId)
+    // TODO:
+    // get the category based on the questionId
+    // setCategory()
+    setCategory("Communication")
     setSolutionTitle(title)
     setResourceList(resource_list)
     setHandoutTestimonialList(handouts_testimonials_list)
@@ -45,7 +50,7 @@ const SolutionPages = () => {
   return (
     <div>
       <Nav></Nav>
-      <Title hasPrev={true} router={router} titleImg={"/titleimghome.PNG"} title={"Home"} />
+      <Title hasPrev={true} router={router} titleImg={"/titleimghome.PNG"} title={category} />
       <Stack
         spacing="xl"
         className={classes.outer}

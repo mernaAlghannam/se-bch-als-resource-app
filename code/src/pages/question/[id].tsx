@@ -15,12 +15,17 @@ const Questionnaire = () => {
     const { classes } = bodyContentUseStyles();
     const router = useRouter();
     
+    let [category, setCategory] = useState<string>("Home")
     let [question, setQuestion] = useState<IQuestion>({id: "", title:""})
     let [currChoices, setCurChoices] = useState<IChoice[] >([])
     let [nextQuestionOrSolutions, setNextQuestionOrSolutions] = useState<{question: IQuestion, solution: ISolution}[]>([])
 
     const getData = async(questionId: string) => {
         const {question, choices} = await getQuestionNChoices(questionId)
+        // TODO:
+        // get the category based on the questionId
+        // setCategory()
+        setCategory("Communication")
         setQuestion(question)
         setCurChoices(choices)
         for (var choice of choices) {
@@ -44,7 +49,7 @@ const Questionnaire = () => {
     return (
         <>
         <Nav></Nav>
-        <Title hasPrev={true} router={router} titleImg={"/titleimghome.PNG"} title={"Home"} />
+        <Title hasPrev={true} router={router} titleImg={"/titleimghome.PNG"} title={category} />
         <Stack
             spacing="xl"
             className={classes.outer}
