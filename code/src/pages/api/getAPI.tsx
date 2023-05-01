@@ -40,20 +40,8 @@ export const getQuestionNChoices = async(questionId: string) => {
 }
 
 
-
-export const getPrevQuestion = async(choiceId: string) => {
-    let prevQuestion: IQuestion = {id:"", title:""}
-    const question_json = await fetchAnyData(API_URL+"/api/choice-to-question-maps/"+choiceId+"?populate=*")
-    prevQuestion = {
-        id: question_json.data.attributes.previous_questions_connected.data[0].id,
-        title: question_json.data.attributes.previous_questions_connected.data[0].attributes.QuestionName
-    }
-    return prevQuestion
-}
-
-
 // Get the next question based on choiceId
-export const getNextQuestion = async(choiceId: string) => {
+export const getNextQuestionOrSolution = async(choiceId: string) => {
     let nextQuestion: IQuestion = {id:"", title:""}
     let solution : ISolution = {id: "", title: ""}
     const question_json = await fetchAnyData(API_URL+"/api/choice-to-question-maps/"+choiceId+"?populate=*")

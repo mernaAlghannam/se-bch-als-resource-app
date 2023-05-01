@@ -5,7 +5,7 @@ import { FooterLinks } from "../../components/Footer/Footer"
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
 import { IChoice, IQuestion, ISolution } from "@/types/api_types";
 import { useEffect, useState } from "react";
-import { getNextQuestion, getQuestionNChoices } from "../api/getAPI";
+import { getNextQuestionOrSolution, getQuestionNChoices } from "../api/getAPI";
 import ToggleButton from "../../components/MainBody/TogglebButton";
 import { useRouter } from 'next/router';
 import Link from "next/link";
@@ -18,7 +18,7 @@ const Questionnaire = () => {
     let [category, setCategory] = useState<string>("Home")
     let [question, setQuestion] = useState<IQuestion>({id: "", title:""})
     let [currChoices, setCurChoices] = useState<IChoice[] >([])
-    let [nextQuestionOrSolutions, setNextQuestionOrSolutions] = useState<{question: IQuestion, solution: ISolution}[]>([])
+    let [nextQuestionOrSolutions, setNextQuestionOrSolutions] = useState<{nextQuestion: IQuestion, solution: ISolution}[]>([])
 
     const getData = async(questionId: string) => {
         const {question, choices} = await getQuestionNChoices(questionId)
@@ -29,8 +29,8 @@ const Questionnaire = () => {
         setQuestion(question)
         setCurChoices(choices)
         for (var choice of choices) {
-            const {nextQuestion, solution}  = await getNextQuestion(choice.id)
-            setNextQuestionOrSolutions(current => [...current, {question: nextQuestion, solution: solution}])
+            const {nextQuestion, solution}  = await getNextQuestionOrSolution(choice.id)
+            setNextQuestionOrSolutions(current => [...current, {nextQuestion: nextQuestion, solution: solution}])
         }
     }
     
@@ -62,9 +62,9 @@ const Questionnaire = () => {
             {nextQuestionOrSolutions.length > currChoices.length && nextQuestionOrSolutions.length == currChoices.length*2?
             currChoices.map((choice, index) => (  
                 <div key={choice.id}>
-                    {nextQuestionOrSolutions[index*2].question.id == ""?
+                    {nextQuestionOrSolutions[index*2].nextQuestion.id == ""?
                         <ToggleButton title={choice.title} />:
-                        <Link href={`/question/${nextQuestionOrSolutions[index*2].question.id}`}>
+                        <Link href={`/question/${nextQuestionOrSolutions[index*2].nextQuestion.id}`}>
                             <ToggleButton title={choice.title} />
                         </Link>
                     }
@@ -77,9 +77,9 @@ const Questionnaire = () => {
                             <ToggleButton title={choice.title} />
                         </Link>
                     :
-                    nextQuestionOrSolutions[index].question.id == ""?  // next page is question
+                    nextQuestionOrSolutions[index].nextQuestion.id == ""?  // next page is question
                         <ToggleButton title={choice.title} />:
-                        <Link href={`/question/${nextQuestionOrSolutions[index].question.id}`}>
+                        <Link href={`/question/${nextQuestionOrSolutions[index].nextQuestion.id}`}>
                             <ToggleButton title={choice.title} />
                         </Link>
                     }

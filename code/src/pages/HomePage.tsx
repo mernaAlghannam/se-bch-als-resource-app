@@ -5,7 +5,7 @@ import { FooterLinks } from "../components/Footer/Footer"
 import Nav from '../components/Navbar/Nav'
 import { IChoice, IQuestion } from '@/types/api_types';
 import { bodyContentUseStyles } from '../components/MainBody/HelperFunctions/BodyContentStyle';
-import { getChoices, getNextQuestion } from './api/getAPI';
+import { getChoices, getNextQuestionOrSolution } from './api/getAPI';
 import ToggleButton from '../components/MainBody/TogglebButton';
 import Link from "next/link";
 import { useRouter } from 'next/router';
@@ -23,7 +23,7 @@ const HomePage = () => {
     const choices = await getChoices(questionId)
     setCurChoices(choices)
     for (var choice of choices) {
-      const {nextQuestion} = await getNextQuestion(choice.id)
+      const {nextQuestion} = await getNextQuestionOrSolution(choice.id)
       setNextQuestions(current => [...current, nextQuestion])
     }
   }
