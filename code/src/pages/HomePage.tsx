@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Title from '../../components/Footer/Titles'
+import Title from '../components/Footer/Titles'
 import { Stack, Text} from '@mantine/core';
-import { FooterLinks } from "../../components/Footer/Footer"
-import Nav from '../../components/Navbar/Nav'
+import { FooterLinks } from "../components/Footer/Footer"
+import Nav from '../components/Navbar/Nav'
 import { IChoice, IQuestion } from '@/types/api_types';
-import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
+import { bodyContentUseStyles } from '../components/MainBody/HelperFunctions/BodyContentStyle';
 import { getChoices, getNextQuestion } from './api/getAPI';
-import ToggleButton from '../../components/MainBody/TogglebButton';
+import ToggleButton from '../components/MainBody/TogglebButton';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 

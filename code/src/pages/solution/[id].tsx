@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { bodyContentUseStyles } from '../../../components/MainBody/HelperFunctions/BodyContentStyle';
+import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
 import { Stack, Text} from '@mantine/core';
-import ResourcesHandouts from '../../../components/MainBody/SolutionPageContent/ResourcesHandouts';
+import ResourcesHandouts from '../../components/MainBody/SolutionPageContent/ResourcesHandouts';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
 import getSolutionPageContentForChoice from '../api/GetSolutionPageForChoice';
-import PageContent from '../../../components/MainBody/SolutionPageContent/PageContent';
+import PageContent from '../../components/MainBody/SolutionPageContent/PageContent';
 import { useRouter } from 'next/router';
-import Nav from '../../../components/Navbar/Nav';
-import Title from '../../../components/Footer/Titles'
+import Nav from '../../components/Navbar/Nav';
+import Title from '../../components/Footer/Titles'
 
 
 

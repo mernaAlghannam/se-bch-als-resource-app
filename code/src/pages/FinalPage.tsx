@@ -1,5 +1,5 @@
 import React from 'react'
-import { FooterLinks } from "../../components/Footer/Footer"
+import { FooterLinks } from "../components/Footer/Footer"
 
 
 
