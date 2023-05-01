@@ -7,7 +7,7 @@ import getSolutionPageContentForChoice from '../api/GetSolutionPageForChoice';
 import PageContent from '../../components/MainBody/SolutionPageContent/PageContent';
 import { useRouter } from 'next/router';
 import Nav from '../../components/Navbar/Nav';
-import Title from '../../components/Footer/Titles'
+import Title from '../../components/Title/Titles'
 
 
 
