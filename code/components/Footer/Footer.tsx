@@ -2,10 +2,12 @@ import { createStyles, Text, Container, rem } from '@mantine/core';
 import Image from 'next/image'
 import image12 from '../../src/styles/image12.png'
 import Link from 'next/link'
+import { footerLinkData } from '@/constants/footerLinkData';
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    position: 'absolute',
+    // position: 'absolute',
+    // display:'flex',
     width: '100%',
     left:0,
     bottom:0, 
@@ -22,35 +24,35 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     maxWidth: rem(200),
+    alignItems: 'right',
 
-    paddingRight: `20px`,
-    paddingTop: rem(20),
-
+    [theme.fn.smallerThan('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       position: 'relative',
       padding: rem(20),
+    },
+  },
 
-      paddingTop: rem(20),
+  inner: {
+    display: 'flex',
+    justifyContent: 'space-between',
 
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
       alignItems: 'center',
-    alignItems: 'start',
+    },
+  },
 
-    [theme.fn.smallerThan('sm')]: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'start',
-
+  groups: {
+    display: 'flex',
+    flexWrap: 'wrap',
     paddingLeft: rem(40),
 
     [theme.fn.smallerThan('sm')]: {
       //if uncommented, this will hide the footer links on mobile
       //display: 'none',
-    width: rem(230),
-
-    [theme.fn.smallerThan('sm')]: {
-      display: 'flex',
-      flexWrap: 'wrap',
     },
   },
 
@@ -69,8 +71,6 @@ const useStyles = createStyles((theme) => ({
     paddingTop: rem(3),
     paddingBottom: rem(3),
     textDecoration: 'none',
-    paddingTop: rem(20),
-    paddingBottom: rem(3),
 
     '&:hover': {
       textDecoration: 'underline',
@@ -78,48 +78,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface FooterLinksProps {
-  data: {
-    links: { label: string; link: string }[];
-  }[];
-}
-
-export function FooterLinks({ data }: FooterLinksProps) {
-  const { classes } = useStyles();
-
-  const groups = data.map((group) => {
-    const links = group.links.map((link, index) => (
-      <Link href={link.link} className={classes.link} key={index}>
-        {/* onClick={(event) => event.preventDefault()} */}
-        {link.label}
-      </Link>
-    ));
-
-    return (
-      <div className={classes.wrapper}>
-        {links}
-      </div>
-    );
-  });
-  //console.log(groups)
-
-
 export function FooterLinks() {
   const { classes } = useStyles();
 
     const links = footerLinkData.map((link, index) => (
-      <Text<"a">
-        key={link.link}
-        className={classes.link}
-        component="a"
-        href={link.link}
-        target="_blank"
-        fz = "sm"
-        
-        // onClick={(event) => event.preventDefault()}
-      >
+      <Link href={link.link} className={classes.link} key={index} target='_blank'>
         {link.label}
-      </Text>
+      </Link>
     ));
 
 
