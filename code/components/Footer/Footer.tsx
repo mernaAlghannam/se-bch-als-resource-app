@@ -22,35 +22,35 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     maxWidth: rem(200),
-    alignItems: 'right',
+
+    paddingRight: `20px`,
+    paddingTop: rem(20),
+
+      position: 'relative',
+      padding: rem(20),
+
+      paddingTop: rem(20),
+
+    [theme.fn.smallerThan('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    alignItems: 'start',
 
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      position: 'relative',
-      padding: rem(20),
-    },
-  },
+      justifyContent: 'space-between',
+      alignItems: 'start',
 
-  inner: {
-    display: 'flex',
-    justifyContent: 'space-between',
-
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  },
-
-  groups: {
-    display: 'flex',
-    flexWrap: 'wrap',
     paddingLeft: rem(40),
 
     [theme.fn.smallerThan('sm')]: {
       //if uncommented, this will hide the footer links on mobile
       //display: 'none',
+    width: rem(230),
+
+    [theme.fn.smallerThan('sm')]: {
+      display: 'flex',
+      flexWrap: 'wrap',
     },
   },
 
@@ -69,6 +69,8 @@ const useStyles = createStyles((theme) => ({
     paddingTop: rem(3),
     paddingBottom: rem(3),
     textDecoration: 'none',
+    paddingTop: rem(20),
+    paddingBottom: rem(3),
 
     '&:hover': {
       textDecoration: 'underline',
@@ -101,6 +103,26 @@ export function FooterLinks({ data }: FooterLinksProps) {
   });
   //console.log(groups)
 
+
+export function FooterLinks() {
+  const { classes } = useStyles();
+
+    const links = footerLinkData.map((link, index) => (
+      <Text<"a">
+        key={link.link}
+        className={classes.link}
+        component="a"
+        href={link.link}
+        target="_blank"
+        fz = "sm"
+        
+        // onClick={(event) => event.preventDefault()}
+      >
+        {link.label}
+      </Text>
+    ));
+
+
   return (
     <footer className={classes.footer}>
       <Container className={classes.inner}>
@@ -110,7 +132,11 @@ export function FooterLinks({ data }: FooterLinksProps) {
           {/* slightly bigger image, could fit better on desktop site */}
           {/* <Image alt='Best hospitals logo' src={image12} size={20}/> */}
         </div>
-        <div className={classes.groups}>{groups}</div>
+        <div className={classes.groups}>
+          <div key={0} className={classes.wrapper}>
+            {links}
+          </div>
+        </div>
       </Container>
     </footer>
   );
