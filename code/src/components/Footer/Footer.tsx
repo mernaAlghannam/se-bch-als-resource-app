@@ -7,11 +7,11 @@ import { footerLinkData } from '@/constants/footerLinkData';
 const useStyles = createStyles((theme) => ({
   footer: {
     // position: 'absolute',
-    // display:'flex',
+    display:'flex',
     width: '100%',
     left:0,
     bottom:0, 
-    marginTop: rem(120),
+    marginTop: rem(40),
     margainbottom: rem(0),
     paddingTop: `calc(${theme.spacing.xl} * 2)`,
     paddingBottom: `calc(${theme.spacing.xl} * 2)`,
@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      position: 'relative',
+      // position: 'relative',
       padding: rem(20),
     },
   },
@@ -38,10 +38,13 @@ const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'start',
 
     [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
+      // flexDirection: 'column',
       alignItems: 'center',
+      // alignItems: 'start',
+      paddingBottom: rem(50),
     },
   },
 

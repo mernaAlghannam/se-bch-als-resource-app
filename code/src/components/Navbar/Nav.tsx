@@ -22,7 +22,7 @@ const Nav = () => {
           <Group>
             <Image maw={100} mah={120} ml={32} mx="auto" radius="md" src="../Boston_Children's_Hospital_logo..png" alt="Random image" />
           </Group>
-          <Burger size="lg" color="#254885" />
+          <Burger size="lg" color="#254885" opened={false} />
         </Container>
       </Header>
   )

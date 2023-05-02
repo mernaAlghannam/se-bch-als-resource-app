@@ -50,7 +50,6 @@ const SolutionPages = () => {
 
   return (
     <div>
-      <Nav></Nav>
       <Title hasPrev={true} router={router} titleImg={`/titleImg${category}.png`} title={category} />
       <Stack
         spacing="xl"
@@ -65,7 +64,6 @@ const SolutionPages = () => {
       {!resourceList.length ? <></>:<ResourcesHandouts title= {"Resources"} data={resourceList}></ResourcesHandouts> }
       {!handoutTestimonialList.length ? <></>:<ResourcesHandouts title={"Handouts/Testimonials"} data={handoutTestimonialList}></ResourcesHandouts> }
       </Stack>
-      <FooterLinks />
     </div>
   )
 }

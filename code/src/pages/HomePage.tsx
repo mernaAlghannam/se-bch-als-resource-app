@@ -37,7 +37,6 @@ const HomePage = () => {
   
   return (
     <div>
-      <Nav></Nav>
       <Title hasPrev={false} router={router} titleImg={"/titleimghome.PNG"} title={"Home"} />
       <Stack
         spacing="xl"
@@ -61,7 +60,6 @@ const HomePage = () => {
         )):
         <></>} 
       </Stack>
-      <FooterLinks />
      </div>
   )
 }

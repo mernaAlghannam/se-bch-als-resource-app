@@ -48,7 +48,6 @@ const Questionnaire = () => {
 
     return (
         <>
-        <Nav></Nav>
         <Title hasPrev={true} router={router} titleImg={`/titleImg${category}.png`} title={category} />
         <Stack
             spacing="xl"
@@ -86,7 +85,6 @@ const Questionnaire = () => {
                 </div>)):
             <></>} 
         </Stack>
-        <FooterLinks />
         
         </>
     )
