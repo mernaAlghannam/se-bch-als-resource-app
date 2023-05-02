@@ -1,6 +1,6 @@
 import { createStyles, Text, Container, rem } from '@mantine/core';
 import Image from 'next/image'
-import image12 from '../../src/styles/image12.png'
+import image12 from 'public/image12.png'
 import Link from 'next/link'
 import { footerLinkData } from '@/constants/footerLinkData';
 

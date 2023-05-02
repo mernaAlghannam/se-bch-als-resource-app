@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import SolutionPages from '../SolutionPages';
+import SolutionPages from '../solution/[id]';
 
 describe('SolutionPages', () => {
   it('renders without crashing', () => {
