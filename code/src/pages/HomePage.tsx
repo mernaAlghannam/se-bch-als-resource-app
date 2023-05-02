@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../components/Title/Titles'
 import { Stack, Text} from '@mantine/core';
-import { FooterLinks } from "../components/Footer/Footer"
-import Nav from '../components/Navbar/Nav'
 import { IChoice, IQuestion } from '@/types/api_types';
 import { bodyContentUseStyles } from '../components/MainBody/HelperFunctions/BodyContentStyle';
 import { getChoices, getNextQuestionOrSolution } from './api/getAPI';

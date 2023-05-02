@@ -3,12 +3,10 @@ import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/
 import { Stack, Text} from '@mantine/core';
 import ResourcesHandouts from '../../components/MainBody/SolutionPageContent/ResourcesHandouts';
 import { HandoutOrTestimonialLink, PageContentType, ResourceLink } from '@/types/dataTypes';
-import getSolutionPageContentForChoice from '../api/GetSolutionPageForChoice';
+import {getSolutionContent} from '../api/GetSolutionPageForChoice';
 import PageContent from '../../components/MainBody/SolutionPageContent/PageContent';
 import { useRouter } from 'next/router';
-import Nav from '../../components/Navbar/Nav';
 import Title from '../../components/Title/Titles'
-import { FooterLinks } from '@/components/Footer/Footer';
 
 
 
@@ -24,7 +22,7 @@ const SolutionPages = () => {
   let [pageContent, setPageContent] = useState<PageContentType[]>([])
 
   const getSolutionPageContent = async (solutionId: string) => {
-    let [title, resource_list, handouts_testimonials_list, page_content] = await getSolutionPageContentForChoice(solutionId)
+    let [title, resource_list, handouts_testimonials_list, page_content] = await getSolutionContent(solutionId)
     // TODO:
     // get the category based on the solutionId
     // setCategory()

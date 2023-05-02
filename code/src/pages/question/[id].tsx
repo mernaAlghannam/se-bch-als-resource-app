@@ -1,7 +1,5 @@
-import Nav from "../../components/Navbar/Nav"
 import Title from '../../components/Title/Titles'
 import { Stack, Text} from '@mantine/core';
-import { FooterLinks } from "../../components/Footer/Footer"
 import { bodyContentUseStyles } from '../../components/MainBody/HelperFunctions/BodyContentStyle';
 import { IChoice, IQuestion, ISolution } from "@/types/api_types";
 import { useEffect, useState } from "react";
